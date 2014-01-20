@@ -1,0 +1,76 @@
+/* CSS FILE FOR AUCTION APP */
+body {
+  font-family: helvetica, arial, sans-serif;
+  margin: 0 auto;
+  padding: 0 10px;
+  background: black;
+  color: white;
+  max-width: 746px;
+}
+/* HEADER */
+header h1 {
+  text-align: center;
+}
+header h1 a {
+  color: red;
+}
+nav {
+  float: left;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 130px;
+  margin-top: 0px;
+  padding: 0.5em 1em;
+  background: red;
+}
+nav a {
+  display: block;
+  margin: 0.5em 0em;
+  color: white;
+}
+/* MAIN */
+.container {
+  margin-top: 0px;
+  margin-left: 150px;
+  padding: 0.5em 1em;
+  background: white;
+  color: black;
+}
+.container :first-child {
+  margin-top: 5px;
+}
+.container h2 {
+  padding-bottom: 0.5em;
+  border-bottom: solid 1px black;
+}
+/* FOOTER */
+footer {
+  font-size: 0.8em;
+  text-align: center;
+  color: red;
+}
+/* GENERAL */
+a:link {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+hr {
+  clear: left;
+  margin-top: 22px;
+  margin-bottom: 22px;
+  border-top: solid 1px red; /*WEBKIT*/
+  border-bottom: none;
+  background-color: red; /*FIREFOX*/
+}
+
+<% if Rails.env.development? then %>
+.debug_dump {
+  box-sizing: border-box;
+  margin: 1em;
+  padding: 1em;
+  border: ridge 6px green;
+  color: green;
+}
+<% end %>
