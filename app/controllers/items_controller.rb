@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_categories, only: [:edit, :new]
 
   # GET /items
   # GET /items.json
@@ -15,7 +16,6 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = Item.new
-    @categories = Category.all
   end
 
   # GET /items/1/edit
@@ -38,12 +38,11 @@ class ItemsController < ApplicationController
     end
   end
 
-=begin
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
     respond_to do |format|
-      if @item.update(category_params)
+      if @item.update(item_params)
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
         format.json { head :no_content }
       else
@@ -53,17 +52,18 @@ class ItemsController < ApplicationController
     end
   end
 
-  # DELETE /categories/1
-  # DELETE /categories/1.json
+=begin
+  # DELETE /items/1
+  # DELETE /items/1.json
   def destroy
-    @category.destroy
+    @item.destroy
     respond_to do |format|
-      format.html { redirect_to categories_url }
+      format.html { redirect_to items_path }
       format.json { head :no_content }
     end
   end
-
 =end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
@@ -73,5 +73,10 @@ class ItemsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
       params.require(:item).permit(:name, :description, :vendor, :starting_price, :category_id)
+    end
+
+    #
+    def set_categories
+      @categories = Category.all
     end
 end

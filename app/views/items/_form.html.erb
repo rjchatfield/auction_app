@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     Category<br>
-    <%= f.select(:category_id, options_from_collection_for_select(@categories, "id", "name")) %>
+    <%= f.select :category_id, options_from_collection_for_select(@categories, "id", "name", selected: @item.category_id) %>
   </div>
   <div class="actions">
     <%= f.submit %>
