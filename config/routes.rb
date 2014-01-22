@@ -1,9 +1,8 @@
 AuctionApp::Application.routes.draw do
 
   resources :categories
-  # resources :items
+  resources :items
 
-  # root "static_pages#contact"
   root "items#index"
 
   # get "static_pages/contact"
