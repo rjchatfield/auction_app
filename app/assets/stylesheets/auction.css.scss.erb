@@ -1,3 +1,5 @@
+$featureColour:#FF0000;
+
 /* CSS FILE FOR AUCTION APP */
 body {
   font-family: helvetica, arial, sans-serif;
@@ -9,13 +11,13 @@ body {
 }
 /* HEADER */
 header {
-  border-bottom: solid 1px red;
+  border-bottom: solid 1px $featureColour;
 }
 header h1 {
   text-align: center;
 }
 header h1 a {
-  color: red;
+  color: $featureColour;
 }
 nav {
   float: left;
@@ -25,7 +27,7 @@ nav {
   width: 130px;
   margin-top: 0px;
   padding: 0.5em 1em;
-  background: red;
+  background: $featureColour;
 }
 nav a {
   display: block;
@@ -45,14 +47,14 @@ nav a {
 }
 .container h2 {
   padding-bottom: 0.5em;
-  border-bottom: solid 1px red;
+  border-bottom: solid 1px $featureColour;
 }
 /* FOOTER */
 footer {
   font-size: 0.8em;
   text-align: center;
-  color: red;
-  border-top: solid 1px red;
+  color: $featureColour;
+  border-top: solid 1px $featureColour;
 }
 /* GENERAL */
 a:link {
@@ -60,14 +62,6 @@ a:link {
 }
 a:hover {
   text-decoration: underline;
-}
-hr {
-  clear: left;
-  margin-top: 22px;
-  margin-bottom: 22px;
-  border-top: solid 1px red; /*WEBKIT*/
-  border-bottom: none;
-  background-color: red; /*FIREFOX*/
 }
 
 <% if !Rails.env.development? %>
