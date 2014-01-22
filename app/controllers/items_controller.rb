@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   # GET /items
   # GET /items.json
@@ -7,12 +7,12 @@ class ItemsController < ApplicationController
     @items = Item.all
   end
 
-=begin
   # GET /items/1
   # GET /items/1.json
   def show
   end
 
+=begin
   # GET /items/new
   def new
     @item = Item.new
@@ -62,15 +62,15 @@ class ItemsController < ApplicationController
     end
   end
 
+=end
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_category
-      @category = Category.find(params[:id])
+    def set_item
+      @item = Item.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
       params.require(:item).permit(:name, :description, :vendor, :starting_price, :category_id)
     end
-=end
 end
