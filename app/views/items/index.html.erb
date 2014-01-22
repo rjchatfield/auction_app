@@ -1,0 +1,13 @@
+<h1>items#index</h1>
+
+<table>
+  <tbody>
+      <% @items.each do |i| %>
+        <%= render 'index_item', :index_item => i %>
+      <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Something to Sell?', root_path %>

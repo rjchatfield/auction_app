@@ -1,8 +1,10 @@
 AuctionApp::Application.routes.draw do
 
   resources :categories
+  # resources :items
 
-  root "static_pages#contact"
+  # root "static_pages#contact"
+  root "items#index"
 
   # get "static_pages/contact"
   match '/contact', to: 'static_pages#contact', via: 'get'
@@ -10,6 +12,9 @@ AuctionApp::Application.routes.draw do
   match '/about', to: 'static_pages#about', via: 'get'
   # get "static_pages/help"
   match '/help', to: 'static_pages#help', via: 'get'
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
