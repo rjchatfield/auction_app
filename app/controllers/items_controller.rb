@@ -12,10 +12,10 @@ class ItemsController < ApplicationController
   def show
   end
 
-=begin
   # GET /items/new
   def new
     @item = Item.new
+    @categories = Category.all
   end
 
   # GET /items/1/edit
@@ -28,26 +28,27 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
 
     respond_to do |format|
-      if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @category }
+      if @item.save
+        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @item }
       else
         format.html { render action: 'new' }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
+        format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
   end
 
+=begin
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
     respond_to do |format|
-      if @category.update(category_params)
-        format.html { redirect_to @category, notice: 'Category was successfully updated.' }
+      if @item.update(category_params)
+        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
+        format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
   end
