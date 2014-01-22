@@ -22,7 +22,7 @@
 </p>
 <p>
   <strong>Created:</strong>
-  <%= @item.created_at %>
+  <%= time_ago_in_words(@item.created_at) %>
 </p>
 
 <%= link_to 'Edit', edit_item_path(@item) %> |
