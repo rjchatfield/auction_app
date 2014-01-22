@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140122104807) do
     t.text     "description"
     t.string   "vendor",         limit: 50
     t.decimal  "starting_price",            precision: 9, scale: 2, null: false
+    t.integer  "category_id",                                       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

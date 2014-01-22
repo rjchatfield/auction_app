@@ -6,6 +6,8 @@ class CreateItems < ActiveRecord::Migration
       t.string :vendor, limit: 50
       t.decimal :starting_price, precision: 9, scale: 2, null: false
 
+      t.references :category, null: false
+
       t.timestamps
     end
   end
