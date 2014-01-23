@@ -1,8 +1,3 @@
 <tr>
-  <td> <%= link_to index_item.name, index_item %></td>
-  <td><%= index_item.description %></td>
-  <td><%= index_item.vendor %></td>
-  <td><%= index_item.starting_price %></td>
-  <td><%= index_item.category.name %></td>
-  <td><%= time_ago_in_words(index_item.created_at) %></td>
+  <td> <%= link_to index_item.name, index_item %> (<%= index_item.category.name %>)</td>
 </tr>

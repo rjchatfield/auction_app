@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :set_categories, only: [:edit, :new, :create]
+  before_action :set_categories, only: [:edit, :new, :create, :update]
 
   # GET /items
   # GET /items.json
@@ -52,7 +52,6 @@ class ItemsController < ApplicationController
     end
   end
 
-=begin
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
@@ -62,7 +61,6 @@ class ItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
-=end
 
   private
     # Use callbacks to share common setup or constraints between actions.
