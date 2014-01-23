@@ -1,9 +1,7 @@
-<p id="notice"><%= notice %></p>
+<h2>ADMIN: <%= @category.name %></h2>
 
-<p>
-  <strong>Name:</strong>
-  <%= @category.name %>
-</p>
+<%= content_tag(:p, notice, id: "notice") unless notice.nil? %>
+
 <p>
   <strong>Description:</strong>
   <%= @category.description %>

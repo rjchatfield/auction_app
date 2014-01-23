@@ -1,3 +1,7 @@
-<tr>
-  <td> <%= link_to index_item.name, index_item %> (<%= index_item.category.name %>)</td>
-</tr>
+<div class="item_wrap">
+  <div class="bullet"></div>
+  <p>
+    <span class="item_name"><%= link_to index_item.name, index_item %></span><br/>
+    <span class="item_cat"><%= link_to index_item.category.name, index_item %></span>
+  </p>
+</div>

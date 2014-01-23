@@ -1,10 +1,11 @@
 <header>
   <h1><%= link_to("Auction App", root_path) %></h1>
   <nav>
-    <%= link_to "Home", root_path %>
-    <%= link_to "Add New", new_item_path %>
+    <%= link_to "Buy", items_path %>
+    <%= link_to "Sell", new_item_path %>
+    <%= content_tag :div, nil, :class => "separator" %>
     <%= link_to "Admin", controller: "categories" %>
-    <hr>
+    <%= content_tag :div, nil, :class => "separator" %>
     <%= link_to "Contact", contact_path %>
     <%= link_to "About", about_path %>
     <%= link_to "Help", help_path %>

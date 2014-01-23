@@ -1,29 +1,31 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @item.name %></h2>
 
-<p>
-  <strong>Name:</strong>
-  <%= @item.name %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @item.description %>
-</p>
-<p>
-  <strong>Vendor:</strong>
-  <%= @item.vendor %>
-</p>
-<p>
-  <strong>Starting Price:</strong>
-  <%= number_to_currency(@item.starting_price) %>
-</p>
-<p>
-  <strong>Category:</strong>
-  <%= @item.category.name %>
-</p>
-<p>
-  <strong>Created:</strong>
-  <%= time_ago_in_words(@item.created_at) %>
-</p>
+<%= content_tag(:p, notice, id: "notice") unless notice.nil? %>
+
+<table class="item_detail">
+  <tbody>
+    <tr class="field">
+      <td class="detail_label">Description</td>
+      <td class="detail_value"><%= @item.description %></td>
+    </tr>
+    <tr class="field">
+      <td class="detail_label">Vendor</td>
+      <td class="detail_value"><%= @item.vendor %></td>
+    </tr>
+    <tr class="field">
+      <td class="detail_label">Starting Price</td>
+      <td class="detail_value"><%= number_to_currency(@item.starting_price) %></td>
+    </tr>
+    <tr class="field">
+      <td class="detail_label">Category</td>
+      <td class="detail_value"><%= @item.category.name %></td>
+    </tr>
+    <tr class="field">
+      <td class="detail_label">Created</td>
+      <td class="detail_value"><%= time_ago_in_words(@item.created_at) %></td>
+    </tr>
+  </tbody>
+</table>
 
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Destroy', @item, method: :delete, data: { confirm: "Are you sure you want to delete the item \"#{@item.name}\"?" } %>

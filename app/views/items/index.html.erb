@@ -1,13 +1,9 @@
-<h1>Want to buy something?</h1>
+<h2>Want to buy something?</h2>
 
-<table>
-  <tbody>
-      <% @items.each do |i| %>
-        <%= render 'index_item', :index_item => i %>
-      <% end %>
-  </tbody>
-</table>
-
-<br>
+<div id="item_list">
+  <% @items.each do |i| %>
+    <%= render 'index_item', :index_item => i %>
+  <% end %>
+</div>
 
 <%= link_to 'Something to Sell?', action: 'new' %>

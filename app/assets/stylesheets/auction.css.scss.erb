@@ -1,23 +1,26 @@
-$featureColour:#FF0000;
+$white:#FFFFFF;
+$antiflash:#F5F4F2;
+$zorba:#9F9389;
+$scorpian:#6A6765;
 
 /* CSS FILE FOR AUCTION APP */
 body {
-  font-family: helvetica, arial, sans-serif;
   margin: 0 auto;
   padding: 0 10px;
-  background: white;
-  color: white;
   max-width: 746px;
+  font-family: "Raleway", Arial, Helvetica, FreeSans, "Liberation Sans", "Nimbus Sans L", sans-serif;
+  background: $antiflash;
+  color: $zorba;
 }
 /* HEADER */
 header {
-  border-bottom: solid 1px $featureColour;
-}
-header h1 {
-  text-align: center;
-}
-header h1 a {
-  color: $featureColour;
+  h1 {
+    font-size: 3em;
+    text-align: center;
+    a {
+      color: $zorba;
+    }
+  }
 }
 nav {
   float: left;
@@ -25,39 +28,107 @@ nav {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   width: 130px;
-  margin-top: 0px;
+  margin-top: 64px;
+  margin-bottom: 4px;
   padding: 0.5em 1em;
-  background: $featureColour;
-}
-nav a {
-  display: block;
-  margin: 0.5em 0em;
-  color: white;
+  text-align: right;
+
+  a {
+    display: block;
+    margin: 0.5em 0em;
+  }
+  a:after {
+    content: "  <";
+  }
+  .separator {
+    margin: 1em 0em;
+  }
 }
 /* MAIN */
 .container {
-  margin-top: 0px;
   margin-left: 150px;
-  padding: 0.5em 1em;
-  background: white;
-  color: black;
-}
-.container :first-child {
-  margin-top: 5px;
-}
-.container h2 {
-  padding-bottom: 0.5em;
-  border-bottom: solid 1px $featureColour;
+  padding: 0 1em;
+  h2 {
+    margin-left:  -150px;
+    margin-right:  -10px;
+    margin-bottom:   0;
+    padding-top:    16px;
+    padding-bottom: 16px;
+    padding-left:  150px;
+    color: $white;
+    background: $zorba;
+  }
+  >:nth-child(2) {
+    margin-top: 14px;
+  }
+  #notice {
+    background:   white;
+    padding:        1em;
+    margin-left:  -10px;
+    margin-right: -10px;
+  }
+  #item_list {
+    .item_wrap {
+      position: relative;
+      margin-bottom: 2em;
+
+      .bullet {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: 2px;
+        background: $white;
+        border-radius: 30%;
+      }
+      p {
+        margin-left: 60px;
+      }
+      .item_name {
+        font-size: 2em;
+      }
+    }
+  }
+  table.item_detail {
+    width: 100%;
+
+    .detail_label {
+      text-align: right;
+      padding-right: 1em;
+    }
+    td {
+      padding-bottom: 1em;
+    }
+    .detail_input,
+    .detail_value {
+      width: 75%;
+
+      input[type="text"],
+      textarea {
+        width: 100%;
+        font: inherit;
+        background: inherit;
+      }
+      select {
+        width: 100px;
+        font: inherit;
+      }
+    }
+  }
 }
 /* FOOTER */
 footer {
   clear: left;
+  margin-top: 20px;
+  padding: 20px 0;
   font-size: 0.8em;
   text-align: center;
-  color: $featureColour;
-  border-top: solid 1px $featureColour;
+  color: $zorba;
+  border-top: solid 1px $zorba;
 }
 /* GENERAL */
+a {
+  color: $scorpian;
+}
 a:link {
   text-decoration: none;
 }
@@ -67,10 +138,14 @@ a:hover {
 
 <% if Rails.env.development? %>
 .debug_dump {
+  opacity: 0;
   box-sizing: border-box;
   margin: 1em;
   padding: 1em;
   border: ridge 6px green;
   color: green;
+}
+.debug_dump:hover {
+  opacity: 1;
 }
 <% end %>
