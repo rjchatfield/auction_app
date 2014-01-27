@@ -16,11 +16,11 @@
       </tr>
       <tr class="field">
         <td class="detail_label"><%= f.label :starting_price %></td>
-        <td class="detail_input"><%= f.text_field :starting_price %></td>
+        <td class="detail_input"><%= f.number_field :starting_price, {min: "0.00", max: "999999999.99", step: "0.01"} %></td>
       </tr>
       <tr class="field">
         <td class="detail_label">Category</td>
-        <td class="detail_input"><%= f.select :category_id, options_from_collection_for_select(@categories, "id", "name", selected: @item.category_id) %></td>
+        <td class="detail_input"><%= f.select :category_id, options_for_select(@categories, selected: @item.category_id), prompt: "Select Category" %></td>
       </tr>
       <tr class="actions">
         <td class="detail_label"></td>

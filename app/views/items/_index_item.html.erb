@@ -1,7 +1,7 @@
 <div class="item_wrap">
   <div class="bullet"></div>
   <p>
-    <span class="item_name"><%= link_to index_item.name, index_item %></span><br/>
-    <span class="item_cat"><%= link_to index_item.category.name, index_item %></span>
+    <span class="item_name"><%= link_to truncate(index_item.name, length: 50), index_item %></span><br/>
+    <span class="item_cat"><%= link_to index_item.category.name, items_path(category_id: index_item.category_id) %></span>
   </p>
 </div>

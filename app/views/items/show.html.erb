@@ -18,7 +18,7 @@
     </tr>
     <tr class="field">
       <td class="detail_label">Category</td>
-      <td class="detail_value"><%= @item.category.name %></td>
+      <td class="detail_value"><%= link_to @item.category.name, items_path(category_id: @item.category_id) %></td>
     </tr>
     <tr class="field">
       <td class="detail_label">Created</td>

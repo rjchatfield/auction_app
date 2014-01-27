@@ -61,11 +61,16 @@ nav {
   >:nth-child(2) {
     margin-top: 14px;
   }
-  #notice {
+  #error_explanation,
+  #notice,
+  .search_form {
     background:   white;
     padding:        1em;
     margin-left:  -10px;
     margin-right: -10px;
+  }
+  #error_explanation {
+    margin-bottom: 1em;
   }
   #item_list {
     .item_wrap {
@@ -103,6 +108,7 @@ nav {
       width: 75%;
 
       input[type="text"],
+      input[type="number"],
       textarea {
         width: 100%;
         font: inherit;

@@ -3,4 +3,17 @@ class Item < ActiveRecord::Base
   belongs_to :category
   validates :name, presence: true, uniqueness: true, length: 3..50
   validates :starting_price, numericality: true
+  validates :category_id, presence: true
+
+  def self.search(query, category_id)
+    if category_id && !category_id.empty?
+      items = where("description || name like ? and category_id = ?", "%#{query}%", category_id)
+      items
+    elsif query && !query.empty?
+      items = where("description || name like ?", "%#{query}%")
+      items
+    else
+      find(:all)
+    end
+  end
 end

@@ -1,11 +1,12 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :set_categories, only: [:edit, :new, :create, :update]
+  before_action :get_categories_array, only: [:index, :new, :edit, :create, :update]
 
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = Item.paginate(page: params[:page], per_page: 10).search(params[:query], params[:category_id])
+    #
   end
 
   # GET /items/1
@@ -69,8 +70,8 @@ class ItemsController < ApplicationController
     end
 
     #
-    def set_categories
-      @categories = Category.all
+    def get_categories_array
+      @categories = Category.all.collect{|c| [c.name, c.id]}
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

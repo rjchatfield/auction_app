@@ -41,7 +41,7 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1.json
   def update
     respond_to do |format|
-      if @category.update(item_params)
+      if @category.update(category_params)
         format.html { redirect_to @category, notice: 'Category was successfully updated.' }
         format.json { head :no_content }
       else
@@ -54,10 +54,19 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
-    @category.destroy
-    respond_to do |format|
-      format.html { redirect_to categories_url }
-      format.json { head :no_content }
+    if has_items
+      # display error
+      puts "--- has_items = true"
+      respond_to do |format|
+        format.html { redirect_to @category, notice: 'Destroy Failed: Category has items.' }
+        format.json { render json: @category.errors, status: :unprocessable_entity }
+      end
+    else
+      @category.destroy
+      respond_to do |format|
+        format.html { redirect_to categories_url }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -70,5 +79,10 @@ class CategoriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
       params.require(:category).permit(:name, :description)
+    end
+
+    #
+    def has_items
+      Item.where('category_id = ?', @category.id).count > 0
     end
 end
