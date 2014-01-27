@@ -1,5 +1,9 @@
-<h2>Edit</h2>
+<% @page_title = "Edit" %>
+
+<h2><%= @page_title %></h2>
 
 <%= render 'form' %>
 
-<%= link_to 'Cancel', @item %>
+<div class="container_nav">
+  <%= link_to 'Cancel', @item, class: "bordered_link" %>
+</div>

@@ -1,13 +1,9 @@
 <header>
-  <h1><%= link_to("Auction App", root_path) %></h1>
+  <h1><%= link_to("#{"[ADMIN] " if @admin}Auction App", root_path) %></h1>
   <nav>
-    <%= link_to "Buy", items_path %>
-    <%= link_to "Sell", new_item_path %>
-    <%= content_tag :div, nil, :class => "separator" %>
+    <%= link_to "Buy", items_path, class: "bordered_link" %>
+    <%= link_to "Sell", new_item_path, class: "bordered_link" %>
+    <%= content_tag :div, nil, class: "separator" %>
     <%= link_to "Admin", controller: "categories" %>
-    <%= content_tag :div, nil, :class => "separator" %>
-    <%= link_to "Contact", contact_path %>
-    <%= link_to "About", about_path %>
-    <%= link_to "Help", help_path %>
   </nav>
 </header>

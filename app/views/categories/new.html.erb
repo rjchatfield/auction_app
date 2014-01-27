@@ -1,5 +1,10 @@
-<h2>ADMIN: New category</h2>
+<% @admin = true %>
+<% @page_title = "New category" %>
+
+<h2><%= @page_title %></h2>
 
 <%= render 'form' %>
 
-<%= link_to 'Cancel', categories_path %>
+<div class="container_nav">
+  <%= link_to 'Cancel', categories_path, class: "bordered_link" %>
+</div>

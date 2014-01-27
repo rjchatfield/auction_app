@@ -1,4 +1,6 @@
-<h2><%= @item.name %></h2>
+<% @page_title = @item.name %>
+
+<h2><%= @page_title %></h2>
 
 <%= content_tag(:p, notice, id: "notice") unless notice.nil? %>
 
@@ -27,5 +29,8 @@
   </tbody>
 </table>
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Destroy', @item, method: :delete, data: { confirm: "Are you sure you want to delete the item \"#{@item.name}\"?" } %>
+<div class="container_nav">
+  <%= link_to 'See All Items', items_path, class: "bordered_link" %>
+  <%= link_to 'Edit', edit_item_path(@item), class: "bordered_link" %>
+  <%= link_to 'Delete', @item, method: :delete, data: { confirm: "Are you sure you want to delete the item \"#{@item.name}\"?" }, class: "bordered_link" %>
+</div>

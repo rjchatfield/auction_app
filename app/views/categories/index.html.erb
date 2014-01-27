@@ -1,26 +1,16 @@
-<h2>ADMIN: Listing categories</h2>
+<% @admin = true %>
+<% @page_title = "All Categories" %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<h2><%= @page_title %></h2>
 
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= link_to category.name, category %></td>
-        <td><%= category.description %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div id="item_list">
+  <% @categories.each do |category| %>
+    <%= render 'index_category', category: category %>
+  <% end %>
+  <%= content_tag(:h3, "No categories found", class: "no_items_message") if @categories.count==0 %>
+</div>
 
 <br>
-
-<%= link_to 'New Category', new_category_path %>
+<div class="container_nav">
+  <%= link_to 'Add Category', new_category_path, class: "bordered_link" %>
+</div>

@@ -2,11 +2,11 @@
   <div class="bullet"></div>
   <p>
     <span class="item_name">
-      <%= link_to truncate(item.name, length: 50), item %>
+      <%= link_to truncate(category.name, length: 50), edit_category_path(category) %>
     </span>
-    <br/>
+    <br>
     <span class="item_cat">
-      <%= link_to item.category.name, items_path(category_id: item.category_id) %>
+      <%= category.description %>
     </span>
   </p>
 </div>

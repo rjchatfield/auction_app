@@ -111,14 +111,11 @@ nav {
       input[type="number"],
       textarea {
         width: 100%;
-        font: inherit;
-        background: inherit;
-      }
-      select {
-        width: 100px;
-        font: inherit;
       }
     }
+  }
+  .container_nav {
+    text-align: right;
   }
 }
 /* FOOTER */
@@ -132,6 +129,14 @@ footer {
   border-top: solid 1px $zorba;
 }
 /* GENERAL */
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+  font: inherit;
+  color: $scorpian;
+  background: inherit;
+}
 a {
   color: $scorpian;
 }
@@ -140,6 +145,24 @@ a:link {
 }
 a:hover {
   text-decoration: underline;
+}
+input[type="submit"] {
+  font: inherit;
+  color: $scorpian;
+  background: inherit;
+}
+input[type="submit"],
+a.bordered_link {
+  padding: 0 4px;
+  border: solid 1px;
+  border-radius: 3px;
+  border-color: $scorpian;
+  text-decoration: none;
+}
+input[type="submit"]:hover,
+a.bordered_link:hover {
+  background: $zorba;
+  color: $white;
 }
 
 <% if Rails.env.development? %>

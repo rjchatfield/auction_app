@@ -1,20 +1,28 @@
+<% if params[:category_id]
+    @page_title = "Search Results"
+  else
+    @page_title = "Home"
+  end %>
+
 <h2>Want to buy something?</h2>
 
 <%= form_tag items_path, method: 'get', class: "search_form" do %>
   <p>
-    <%= label_tag :query, "Search for:" %>
     <%= select_tag :category_id, options_for_select(@categories, selected: params[:category_id]), prompt: "Select Category" %>
     <%= text_field_tag :query, params[:query] %>
     <%= submit_tag "Search", name: nil %>
+    <%= link_to "Clear", items_path, class: "bordered_link" %>
   </p>
 <% end %>
 
 <div id="item_list">
   <% @items.each do |i| %>
-    <%= render 'index_item', :index_item => i %>
+    <%= render 'index_item', item: i %>
   <% end %>
   <%= content_tag(:h3, "No items found", class: "no_items_message") if @items.count==0 %>
   <%= will_paginate @items %>
 </div>
-
-<%= link_to 'Something to Sell?', action: 'new' %>
+<br>
+<div class="container_nav">
+  <%= link_to 'Something to Sell?', {action: 'new'}, class: "bordered_link" %>
+</div>

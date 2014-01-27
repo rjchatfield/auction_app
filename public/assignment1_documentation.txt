@@ -23,9 +23,9 @@
    $ rake db:reset; rake db:populate
 
    This function will
-     * create the database (if there is none present),
-     * purge any data (if there already was a db present), and
-     * populate it using a script provided in /auction_app/lib/tasks/sample_data.rake.
+     * create the database (if there is none present)
+     * purge any data (if there already was a db present)
+     * populate it using a script in /auction_app/lib/tasks/sample_data.rake
 
 
 ## USAGE
@@ -35,34 +35,42 @@
    [Buy]:   Will take you to the items#index with the search feature
    [Sell]:  Will take you to the items#new
    [Admin]: Will take you to the categories#index.
-           This is not protected with any authentication.
+            This is not protected with any authentication.
 
 
 ## FEATURES NOT IMPLEMENTEND
 
-   All features were implemented as per the assignment specification provided Sunday, 26th January.
+   All features were implemented as per the assignment specification provided
+   Sunday, 26th January.
 
 
 ## ADDITIONAL FEATURES IMPLEMENTED
 
- * Categories filter can be triggered by clicking on the category in items#index or items#show.
+ * Categories filter can be triggered by clicking on the category in items#index
+ or items#show.
  * Pagination of items#index
  * Fancy CSS hover of debug information while in Rails Development.
    Try hovering over the bottom of any HTML page to see the debug information.
-   This 'reveal on hover' technique helped with UI development (without being too distracting).
+   This 'reveal on hover' technique helped with UI development (without being
+   too distracting).
 
 
 ## USABILITY TESTING
 
-   Many hours of developer testing was completed during production of this application. Additionally,
-   my father also participated in an informal testing and feedback session. I briefed my father of
-   the core features of the application, what it was aiming to do and what was outside of the scope
-   of this assignment.
+   Many hours of developer testing was completed during production of this
+   application. This included continual testing across browsers such as Apple
+   Safari, Mozilla Firefox and Google Chrome.
 
-   FEEDBACK: It was impressive overall, however it found it confusing to get back to the main page.
-   CHANGES:  While there was always a link on every page (provided in the header), it was apparent
-             that it wasn't the obvious way "home". To rectify this, I improved the colour scheme
-             and styling in the main CSS file.
+   Additionally, my father also participated in an informal testing and feedback
+   session. I briefed my father of the core features of the application, what it
+   was aiming to do and what was outside of the scope of this assignment.
+
+   FEEDBACK: It was impressive overall, however he found it confusing to get
+             back to the main page.
+   CHANGES:  While there was always a link on every page (provided in the
+             header), it was apparent that it wasn't the obvious way "home". To
+             rectify this, I improved the colour scheme and styling in the main
+             CSS file.
 
 
 ###############

@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :admin_true
 
   # GET /categories
   # GET /categories.json
@@ -58,7 +59,7 @@ class CategoriesController < ApplicationController
       # display error
       puts "--- has_items = true"
       respond_to do |format|
-        format.html { redirect_to @category, notice: 'Destroy Failed: Category has items.' }
+        format.html { redirect_to @category, notice: 'Delete Failed: Category has items.' }
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     else
@@ -84,5 +85,10 @@ class CategoriesController < ApplicationController
     #
     def has_items
       Item.where('category_id = ?', @category.id).count > 0
+    end
+
+    # Admin Heading
+    def admin_true
+      @admin = true
     end
 end
