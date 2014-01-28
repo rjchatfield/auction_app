@@ -6,6 +6,7 @@ To get started:
 
     $ git clone git@bitbucket.org:rjchatfield/auction-app.git
     $ cd auction_app
+    $ bundle install
     $ rake db:reset; rake db:populate
     $ rails s
 

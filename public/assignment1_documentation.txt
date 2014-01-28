@@ -14,6 +14,8 @@
 
    $ git clone git@bitbucket.org:rjchatfield/auction-app.git
    $ cd auction_app
+   $ bundle install
+   $ rake db:reset; rake db:populate
    $ rails s
    $ open http://localhost:3000/        # in new Terminal tab
 
