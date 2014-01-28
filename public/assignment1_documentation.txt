@@ -49,12 +49,17 @@
 ## ADDITIONAL FEATURES IMPLEMENTED
 
  * Categories filter can be triggered by clicking on the category in items#index
- or items#show.
+   or items#show.
  * Pagination of items#index
  * Fancy CSS hover of debug information while in Rails Development.
    Try hovering over the bottom of any HTML page to see the debug information.
    This 'reveal on hover' technique helped with UI development (without being
    too distracting).
+ * Page Titles and H1's are programmatically appended with assignable instance
+   variables. Additionally, "[ADMIN]" has been programmatically prepended to all
+   Category views.
+ * Restriction prohibits the Admin from destroying a Category that contains
+   Items.
 
 
 ## USABILITY TESTING
