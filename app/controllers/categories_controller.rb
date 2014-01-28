@@ -55,9 +55,9 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
-    if has_items
+    if items?
       # display error
-      puts "--- has_items = true"
+      logger.debug '--- has_items = true'
       respond_to do |format|
         format.html { redirect_to @category, notice: 'Delete Failed: Category has items.' }
         format.json { render json: @category.errors, status: :unprocessable_entity }
@@ -72,23 +72,24 @@ class CategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_category
-      @category = Category.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def category_params
-      params.require(:category).permit(:name, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_category
+    @category = Category.find(params[:id])
+  end
 
-    #
-    def has_items
-      Item.where('category_id = ?', @category.id).count > 0
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def category_params
+    params.require(:category).permit(:name, :description)
+  end
 
-    # Admin Heading
-    def admin_true
-      @admin = true
-    end
+  #
+  def items?
+    Item.where('category_id = ?', @category.id).count > 0
+  end
+
+  # Admin Heading
+  def admin_true
+    @admin = true
+  end
 end

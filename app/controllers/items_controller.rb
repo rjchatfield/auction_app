@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :get_categories_array, only: [:index, :new, :edit, :create, :update]
+  before_action :categories_array, only: [:index, :new, :edit, :create, :update]
 
   # GET /items
   # GET /items.json
@@ -64,18 +64,19 @@ class ItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_item
-      @item = Item.find(params[:id])
-    end
 
-    #
-    def get_categories_array
-      @categories = Category.all.collect{|c| [c.name, c.id]}
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def item_params
-      params.require(:item).permit(:name, :description, :vendor, :starting_price, :category_id)
-    end
+  #
+  def categories_array
+    @categories = Category.all.map { |c| [c.name, c.id] }
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def item_params
+    params.require(:item).permit(:name, :description, :vendor, :starting_price, :category_id)
+  end
 end
