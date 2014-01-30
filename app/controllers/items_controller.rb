@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :categories_array, only: [:index, :new, :edit, :create, :update]
+  before_action :signed_in_user,   only: [               :new, :edit, :create, :update, :destroy]
+  before_action :set_item,         only: [        :show,       :edit,          :update, :destroy]
+  before_action :categories_array, only: [:index,        :new, :edit, :create, :update]
 
   # GET /items
   # GET /items.json
@@ -78,5 +79,12 @@ class ItemsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def item_params
     params.require(:item).permit(:name, :description, :vendor, :starting_price, :category_id)
+  end
+
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to signin_url, notice: "Please sign in."
+    end
   end
 end
