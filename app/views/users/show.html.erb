@@ -3,6 +3,7 @@
 <h2><%= @page_title %></h2>
 
 <%= content_tag(:p, notice, id: "notice") unless notice.nil? %>
+<%= gravatar_for @user %>
 
 <h3><%= "#{@user.first_name} is selling:" %></h3>
 <%# content_tag(:h3, "No items found", class: "no_items_message") if @users.count==0 %>

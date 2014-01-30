@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: "Welcome to Auction App, #{@user}." }
+        format.html { redirect_to @user, success: "Welcome to Auction App, #{@user.first_name}." }
         format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update(item_params)
+      if @user.update(last_name: user_params[:last_name])
         format.html { redirect_to @user, notice: 'Account details were successfully updated.' }
         format.json { head :no_content }
       else
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to items_path }
+      format.html { redirect_to users_path }
       format.json { head :no_content }
     end
   end

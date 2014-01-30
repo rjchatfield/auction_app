@@ -1,0 +1,28 @@
+<% @page_title = "Sign In" %>
+
+<h2><%= @page_title %></h2>
+
+<%= content_tag(:p, alert, id: "notice") unless alert.nil? %>
+
+<%= form_for(:session, url: sessions_path) do |f| %>
+  <table class="item_detail">
+    <tbody>
+      <tr class="field">
+        <td class="detail_label"><%= f.label :email %></td>
+        <td class="detail_input"><%= f.text_field :email %></td>
+      </tr>
+      <tr class="field">
+        <td class="detail_label"><%= f.label :password %></td>
+        <td class="detail_input"><%= f.password_field :password %></td>
+      </tr>
+      <tr class="actions">
+        <td class="detail_label"></td>
+        <td class="detail_input"><%= f.submit "Sign in", class: "bordered_link" %></td>
+      </tr>
+      <tr class="field">
+        <td class="detail_label">New user?</td>
+        <td class="detail_input"><%= link_to "Sign up now!", signup_path %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
+  before_create :create_remember_token
 
   default_scope { order :last_name }
 
@@ -16,5 +17,22 @@ class User < ActiveRecord::Base
 
   def self.map_id_fname_lname
     all.map { |u| [u.id, u.first_name, u.last_name] }
+  end
+
+  # USED FOR REMEMBERING SESSIONS
+  def User.new_remember_token
+    SecureRandom.urlsafe_base64
+  end
+
+  # USED FOR REMEMBERING SESSIONS
+  def User.encrypt(token)
+    Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  private
+
+  # USED FOR REMEMBERING SESSIONS
+  def create_remember_token
+    self.remember_token = User.encrypt(User.new_remember_token)
   end
 end

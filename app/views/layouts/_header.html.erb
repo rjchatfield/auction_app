@@ -1,9 +1,21 @@
 <header>
+  <div id="accountbar">
+    <% if signed_in? %>
+      Welcome, <%= link_to current_user.first_name, current_user %>
+      <%= link_to "Sign Out", signout_path, method: 'delete', class: "bordered_link" %>
+    <% else %>
+      <%= link_to "Sign In", signin_path, class: "bordered_link" %>
+    <% end %>
+  </div>
   <h1><%= link_to("#{"[ADMIN] " if @admin}Auction App", root_path) %></h1>
   <nav>
     <%= link_to "Buy", items_path, class: "bordered_link" %>
     <%= link_to "Sell", new_item_path, class: "bordered_link" %>
     <%= content_tag :div, nil, class: "separator" %>
     <%= link_to "Admin", controller: "categories" %>
+    <% if signed_in? %>
+      <%= content_tag :div, nil, class: "separator" %>
+      <%= link_to "Accounts", users_path %>
+    <% end %>
   </nav>
 </header>

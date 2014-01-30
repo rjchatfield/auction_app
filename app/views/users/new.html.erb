@@ -2,7 +2,37 @@
 
 <h2><%= @page_title %></h2>
 
-<%= render 'form' %>
+<%= form_for @user do |f| %>
+  <%= render 'shared/error_messages', obj: f.object %>
+  <table class="item_detail">
+    <tbody>
+      <tr class="field">
+        <td class="detail_label"><%= f.label :first_name %></td>
+        <td class="detail_input"><%= f.text_field :first_name %></td>
+      </tr>
+      <tr class="field">
+        <td class="detail_label"><%= f.label :last_name %></td>
+        <td class="detail_input"><%= f.text_field :last_name %></td>
+      </tr>
+      <tr class="field">
+        <td class="detail_label"><%= f.label :email %></td>
+        <td class="detail_input"><%= f.text_field :email %></td>
+      </tr>
+      <tr class="field">
+        <td class="detail_label"><%= f.label :password %></td>
+        <td class="detail_input"><%= f.password_field :password, size: 40 %></td>
+      </tr>
+      <tr class="field">
+        <td class="detail_label"><%= f.label :password_confirmation, 'Confirm' %></td>
+        <td class="detail_input"><%= f.password_field :password_confirmation, size: 40 %></td>
+      </tr>
+      <tr class="actions">
+        <td class="detail_label"></td>
+        <td class="detail_input"><%= f.submit "Create New Account" %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
 
 <div class="container_nav">
   <%= link_to 'Cancel', users_path, class: "bordered_link" %>
