@@ -16,6 +16,7 @@
 <% end %>
 
 <div id="item_list">
+  <%= will_paginate @items %>
   <% @items.each do |i| %>
     <%= render 'index_item', item: i %>
   <% end %>

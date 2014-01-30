@@ -4,9 +4,10 @@
 
 <div id="item_list">
   <% logger.debug "\n@users: #{@users}" %>
+  <% will_paginate @users %>
   <% @users.each do |user| %>
     <%= render 'index_item', user: user %>
   <% end %>
   <%= content_tag(:h3, "No accounts found", class: "no_items_message") if @users.count==0 %>
-  <%# will_paginate @users %>
+  <% will_paginate @users %>
 </div>
