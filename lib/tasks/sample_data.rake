@@ -7,7 +7,6 @@ namespace :db do
     puts '\n -- db:populate Categories Created.'
 
     # Item
-    puts '\n -- db:populate Items Created.'
     99.times do |n|
       name           = "#{Faker::Commerce.product_name} - #{n}"
       description    = "#{Faker::Company.catch_phrase}, with #{Faker::Company.catch_phrase}"
@@ -20,9 +19,20 @@ namespace :db do
                    category_id: category_id,
                    starting_price: starting_price)
     end
+    puts '\n -- db:populate Items Created.'
 
     # Users
-    puts '\n -- db:populate Users Created.'
+    User.create!(first_name: 'Smiley',
+                  last_name: 'Rob',
+                      email: 'robert.chatfield@griffithuni.edu.au',
+                   password: 'asdasd',
+                   password_confirmation: 'asdasd')
+    User.create!(first_name: 'Rodney',
+                  last_name: 'Topor',
+                      email: 'r.topot@gu.edu.au',
+                   password: 'asdasd',
+                   password_confirmation: 'asdasd')
+
     2.times do |u|
       first = Faker::Name.first_name
       last  = Faker::Name.last_name
@@ -34,6 +44,7 @@ namespace :db do
                    password: passw,
                    password_confirmation: passw)
     end
+    puts '\n -- db:populate Users Created.'
 
     puts '\ndb:populate complete.'
   end
