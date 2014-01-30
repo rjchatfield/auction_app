@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:index, :show, :edit, :update, :destroy]
 
   def index
     @users = User.paginate(page: params[:page], per_page: 10).all
@@ -31,8 +32,8 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update(last_name: user_params[:last_name])
-        format.html { redirect_to @user, notice: 'Account details were successfully updated.' }
+      if @user.update_attributes(user_params)
+        format.html { redirect_to @user, success: 'Account details were successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -44,7 +45,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_path }
+      format.html { redirect_to users_url }
       format.json { head :no_content }
     end
   end
@@ -57,5 +58,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+  end
+
+  def signed_in_user
+    redirect_to signin_url, notice: "Please sign in." unless signed_in?
   end
 end

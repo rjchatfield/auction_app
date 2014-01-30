@@ -3,29 +3,40 @@
 <h2><%= @page_title %></h2>
 
 <%= form_for @user do |f| %>
-  <%= render 'shared/error_messages', obj: f.object %>
-  <table class="item_detail">
-    <tbody>
-      <tr class="field">
-        <td class="detail_label"><%= f.label :first_name %></td>
-        <td class="detail_input"><%= f.text_field :first_name %></td>
-      </tr>
-      <tr class="field">
-        <td class="detail_label"><%= f.label :last_name %></td>
-        <td class="detail_input"><%= f.text_field :last_name %></td>
-      </tr>
-      <tr class="field">
-        <td class="detail_label"><%= f.label :email %></td>
-        <td class="detail_input"><%= f.text_field :email %></td>
-      </tr>
-      <tr class="actions">
-        <td class="detail_label"></td>
-        <td class="detail_input"><%= f.submit "Save" %></td>
-      </tr>
-    </tbody>
-  </table>
+<%= render 'shared/error_messages', obj: f.object %>
+<table class="item_detail">
+  <tbody>
+    <tr class="field">
+      <td class="detail_label"><%= f.label :first_name %></td>
+      <td class="detail_input"><%= f.text_field :first_name %></td>
+    </tr>
+    <tr class="field">
+      <td class="detail_label"><%= f.label :last_name %></td>
+      <td class="detail_input"><%= f.text_field :last_name %></td>
+    </tr>
+    <tr class="field">
+      <td class="detail_label"><%= f.label :email %></td>
+      <td class="detail_input"><%= f.text_field :email %></td>
+    </tr>
+    <tr class="field">
+      <td class="detail_label"><%= f.label :password, "New Password" %></td>
+      <td class="detail_input"><%= f.password_field :password, size: 40 %></td>
+    </tr>
+    <tr class="field">
+      <td class="detail_label"><%= f.label :password_confirmation, 'Confirm' %></td>
+      <td class="detail_input"><%= f.password_field :password_confirmation, size: 40 %></td>
+    </tr>
+    <tr class="actions">
+      <td class="detail_label"></td>
+      <td class="detail_input"><%= f.submit "Save" %></td>
+    </tr>
 <% end %>
-
+    <tr class="actions">
+      <td class="detail_label"><%= gravatar_for @user %></td>
+      <td class="detail_input"><a href="http://gravatar.com/emails" class="bordered_link" target=_blank>change</a></td>
+    </tr>
+  </tbody>
+</table>
 <div class="container_nav">
   <%= link_to 'Cancel', @user, class: "bordered_link" %>
 </div>
