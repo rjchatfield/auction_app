@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  before_action :admin_true
+  before_action :isAdmin
 
   # GET /categories
   # GET /categories.json
@@ -89,7 +89,12 @@ class CategoriesController < ApplicationController
   end
 
   # Admin Heading
-  def admin_true
-    @admin = true
+  def isAdmin
+    if current_user.admin?
+      @admin = true
+    else
+      flash[:alert] = "You're not allowed to do that..."
+      redirect_to root_url
+    end
   end
 end

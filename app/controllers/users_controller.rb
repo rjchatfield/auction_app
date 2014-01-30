@@ -46,7 +46,10 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url }
+      format.html {
+        flash[:success] = "User deleted."
+        redirect_to users_url
+      }
       format.json { head :no_content }
     end
   end

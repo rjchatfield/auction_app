@@ -4,7 +4,7 @@ namespace :db do
     # Category
     Category.create!(name: 'Books',  description: 'readable items')
     Category.create!(name: 'Movies', description: 'watchable items')
-    puts '\n -- db:populate Categories Created.'
+    puts 'db:populate Categories Created.'
 
     # Item
     99.times do |n|
@@ -19,17 +19,18 @@ namespace :db do
                    category_id: category_id,
                    starting_price: starting_price)
     end
-    puts '\n -- db:populate Items Created.'
+    puts 'db:populate Items Created.'
 
     # Users
     User.create!(first_name: 'Smiley',
                   last_name: 'Rob',
                       email: 'robert.chatfield@griffithuni.edu.au',
                    password: 'asdasd',
-                   password_confirmation: 'asdasd')
+                   password_confirmation: 'asdasd',
+                      admin: true)
     User.create!(first_name: 'Rodney',
                   last_name: 'Topor',
-                      email: 'r.topot@gu.edu.au',
+                      email: 'r.topor@gu.edu.au',
                    password: 'asdasd',
                    password_confirmation: 'asdasd')
 
@@ -44,8 +45,8 @@ namespace :db do
                    password: passw,
                    password_confirmation: passw)
     end
-    puts '\n -- db:populate Users Created.'
+    puts 'db:populate Users Created.'
 
-    puts '\ndb:populate complete.'
+    puts 'db:populate Complete.'
   end
 end
