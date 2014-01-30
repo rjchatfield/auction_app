@@ -1,0 +1,9 @@
+<div class="item_wrap">
+  <div class="bullet"></div>
+  <p>
+    <span class="item_name">
+      <% logger.debug "user: #{user}" %>
+      <%= link_to (user.first_name + " " + user.last_name), user %>
+    </span>
+  </p>
+</div>

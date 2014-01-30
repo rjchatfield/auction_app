@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140122104807) do
+ActiveRecord::Schema.define(version: 20140129033623) do
 
   create_table "categories", force: true do |t|
     t.string   "name",        limit: 50
@@ -31,8 +31,11 @@ ActiveRecord::Schema.define(version: 20140122104807) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email"
+    t.string   "first_name",      limit: 50, null: false
+    t.string   "last_name",       limit: 50, null: false
+    t.string   "email",                      null: false
+    t.string   "password_digest",            null: false
+    t.boolean  "admin"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,11 +1,13 @@
 namespace :db do
-  desc "Fill database with sample data"
+  desc 'Fill database with sample data'
   task populate: :environment do
-    # Explicit category definitions
-    Category.create!(name: "Books",  description: "readable items")
-    Category.create!(name: "Movies", description: "watchable items")
+    # Category
+    Category.create!(name: 'Books',  description: 'readable items')
+    Category.create!(name: 'Movies', description: 'watchable items')
+    puts '\n -- db:populate Categories Created.'
 
-    # Repetitive, implicit item definitions
+    # Item
+    puts '\n -- db:populate Items Created.'
     99.times do |n|
       name           = "#{Faker::Commerce.product_name} - #{n}"
       description    = "#{Faker::Company.catch_phrase}, with #{Faker::Company.catch_phrase}"
@@ -19,6 +21,20 @@ namespace :db do
                    starting_price: starting_price)
     end
 
-    puts "\ndb:populate complete."
+    # Users
+    puts '\n -- db:populate Users Created.'
+    2.times do |u|
+      first = Faker::Name.first_name
+      last  = Faker::Name.last_name
+      email = "#{u}#{Faker::Internet.email}"
+      passw = 'rodney'
+      User.create!(first_name: first,
+                   last_name: last,
+                   email: email,
+                   password: passw,
+                   password_confirmation: passw)
+    end
+
+    puts '\ndb:populate complete.'
   end
 end
