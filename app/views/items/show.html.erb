@@ -12,7 +12,7 @@
     </tr>
     <tr class="field">
       <td class="detail_label">Seller</td>
-      <td class="detail_value"><%= link_to "#{@item.user.first_name}", users_path(user_id: @item.user_id) %></td>
+      <td class="detail_value"><%= link_to "#{@item.user.first_name} #{@item.user.last_name}", users_path(user_id: @item.user_id) %></td>
     </tr>
     <tr class="field">
       <td class="detail_label">Starting Price</td>
@@ -31,7 +31,7 @@
 
 <div class="container_nav">
   <%= link_to 'See All Items', items_path, class: "bordered_link" %>
-  <% if signed_in? %>
+  <% if current_user?(@item.user) || current_user.admin? %>
     <%= link_to 'Edit', edit_item_path(@item), class: "bordered_link" %>
     <%= link_to 'Delete', @item, method: :delete, data: { confirm: "Are you sure you want to delete the item \"#{@item.name}\"?" }, class: "bordered_link" %>
   <% end %>

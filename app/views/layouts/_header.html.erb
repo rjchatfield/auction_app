@@ -13,7 +13,7 @@
     <%= link_to "Buy", items_path, class: "bordered_link" %>
     <%= link_to "Sell", new_item_path, class: "bordered_link" %>
     <%= content_tag :div, nil, class: "separator" %>
-    <% if current_user && current_user.admin? %>
+    <% if signed_in? && current_user.admin? %>
       <%= content_tag :div, nil, class: "separator" %>
       <%= link_to "Admin", controller: "categories"%>
     <% end %>

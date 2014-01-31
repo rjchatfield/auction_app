@@ -72,6 +72,8 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    redirect_to current_user, alert: "You can't do that to #{@user.first_name}'s account!? Here's your own." unless current_user?(@user)
+    unless current_user?(@user) || current_user.admin?
+      redirect_to current_user, alert: "You can't do that to #{@user.first_name}'s account!? Here's your own."
+    end
   end
 end
