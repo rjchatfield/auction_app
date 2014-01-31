@@ -5,6 +5,7 @@
       <%= link_to "Sign Out", signout_path, method: 'delete', class: "bordered_link" %>
     <% else %>
       <%= link_to "Sign In", signin_path, class: "bordered_link" %>
+      <%= link_to "Sign Up", signup_path, class: "bordered_link" %>
     <% end %>
   </div>
   <h1><%= link_to("#{"[ADMIN] " if @admin}Auction App", root_path) %></h1>
