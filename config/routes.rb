@@ -4,6 +4,7 @@ AuctionApp::Application.routes.draw do
   resources :items
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :bids, only: [:create, :destroy]
 
   root 'items#index'
 

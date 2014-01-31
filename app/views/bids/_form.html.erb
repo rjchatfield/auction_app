@@ -1,0 +1,20 @@
+<%= form_for @bid do |f| %>
+  <%= render 'shared/error_messages', obj: f.object %>
+  <table class="item_detail">
+    <tbody>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :item_id, value: @item.id %>
+      <tr class="field">
+        <td class="detail_label"><%= f.label :amount, "Your bid ($)" %></td>
+        <td class="detail_input"><%= f.number_field :amount, {  min: min_bid_value_for(@item),
+                                                                max: 999_999_999,
+                                                                step: stepper_value,
+                                                                value: min_bid_value_for(@item) } %></td>
+      </tr>
+      <tr class="actions">
+        <td class="detail_label"></td>
+        <td class="detail_input"><%= f.submit "Make Bid" %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

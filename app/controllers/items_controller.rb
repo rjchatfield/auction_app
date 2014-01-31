@@ -14,6 +14,7 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
+    @bid = Bid.new
   end
 
   # GET /items/new
@@ -94,5 +95,4 @@ class ItemsController < ApplicationController
       redirect_to items_url, alert: "You can't do that!?."
     end
   end
-
 end
