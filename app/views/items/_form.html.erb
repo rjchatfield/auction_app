@@ -2,6 +2,7 @@
   <%= render 'shared/error_messages', obj: f.object %>
   <table class="item_detail">
     <tbody>
+      <%= f.hidden_field :user_id, value: current_user.id %>
       <tr class="field">
         <td class="detail_label"><%= f.label :name %></td>
         <td class="detail_input"><%= f.text_field :name %></td>
@@ -9,10 +10,6 @@
       <tr class="field">
         <td class="detail_label"><%= f.label :description %></td>
         <td class="detail_input"><%= f.text_area :description %></td>
-      </tr>
-      <tr class="field">
-        <td class="detail_label"><%= f.label :vendor %></td>
-        <td class="detail_input"><%= f.text_field :vendor %></td>
       </tr>
       <tr class="field">
         <td class="detail_label"><%= f.label :starting_price %></td>

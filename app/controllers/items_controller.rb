@@ -78,13 +78,13 @@ class ItemsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def item_params
-    params.require(:item).permit(:name, :description, :vendor, :starting_price, :category_id)
+    params.require(:item).permit(:name, :description, :user_id, :starting_price, :category_id)
   end
 
   def signed_in_user
     unless signed_in?
       store_location
-      redirect_to signin_url, notice: "Please sign in."
+      redirect_to signin_url, notice: 'Please sign in.'
     end
   end
 end

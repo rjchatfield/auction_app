@@ -10,13 +10,13 @@ namespace :db do
     99.times do |n|
       name           = "#{Faker::Commerce.product_name} - #{n}"
       description    = "#{Faker::Company.catch_phrase}, with #{Faker::Company.catch_phrase}"
-      vendor         = Faker::Company.name
+      user_id        = (n % 4) + 1
       category_id    = (n % 2) + 1
       starting_price = Faker::Number.number(9).to_f - 0.05
       Item.create!(name: name,
                    description: description,
-                   vendor: vendor,
                    category_id: category_id,
+                   user_id: user_id,
                    starting_price: starting_price)
     end
     puts 'db:populate Items Created.'

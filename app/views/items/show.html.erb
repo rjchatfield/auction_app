@@ -11,8 +11,8 @@
       <td class="detail_value"><%= @item.description %></td>
     </tr>
     <tr class="field">
-      <td class="detail_label">Vendor</td>
-      <td class="detail_value"><%= @item.vendor %></td>
+      <td class="detail_label">Seller</td>
+      <td class="detail_value"><%= link_to "#{@item.user.first_name}", users_path(user_id: @item.user_id) %></td>
     </tr>
     <tr class="field">
       <td class="detail_label">Starting Price</td>
