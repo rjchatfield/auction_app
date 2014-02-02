@@ -13,15 +13,9 @@
   </p>
 <% end %>
 
-<div id="item_list">
-  <%= will_paginate @items %>
-  <% @items.each do |i| %>
-    <%= render 'index_item', item: i %>
-  <% end %>
-  <%= content_tag(:h3, "No items found", class: "no_items_message") if @items.count==0 %>
-  <%= will_paginate @items %>
-</div>
+<%= render 'index_items', items: @items %>
 <br>
+
 <div class="container_nav">
   <%= link_to 'Something to Sell?', {action: 'new'}, class: "bordered_link" %>
 </div>

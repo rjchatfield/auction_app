@@ -3,7 +3,12 @@
 <%= gravatar_for @user %>
 
 <h3><%= "#{@user.first_name} is selling:" %></h3>
-<%# content_tag(:h3, "No items found", class: "no_items_message") if @users.count==0 %>
+<%= render 'items/index_items', items: @itemsSell %>
+<br>
+
+<h3><%= "#{@user.first_name} is bidding on:" %></h3>
+<%= render 'items/index_items', items: @itemsBid %>
+<br>
 
 <div class="container_nav">
   <%= link_to 'See All Accounts', users_path, class: "bordered_link" %>

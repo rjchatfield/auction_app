@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
   before_create :create_remember_token
 
-  default_scope { order :last_name }
+  default_scope -> { order('users.last_name') }
 
   has_many :items
 
