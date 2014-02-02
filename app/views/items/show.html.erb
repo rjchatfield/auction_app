@@ -36,11 +36,8 @@
 <% end %>
 
 <% if signed_in? %>
-  <%# render 'bids/index' %>
-  <% unless current_user?(@item.user) %>
-    <h3>New Bid</h3>
-    <%= render 'bids/form' %>
-  <% end %>
+  <%= render 'bids/index' unless @bids.count==0 %>
+  <%= render 'bids/form' unless current_user?(@item.user) %>
 <% end %>
 
 <div class="container_nav">

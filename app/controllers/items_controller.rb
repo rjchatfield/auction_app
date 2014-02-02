@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
   # GET /items/1.json
   def show
     @bid  = Bid.new
-    @bids = Bid.where('item_id = ?', @item.id)
+    @bids = Bid.paginate(page: params[:page], per_page: 5).where('item_id = ?', @item.id)
   end
 
   # GET /items/new
