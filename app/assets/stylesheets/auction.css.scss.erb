@@ -4,6 +4,11 @@ $zorba:#9F9389;
 $scorpian:#6A6765;
 
 /* CSS FILE FOR AUCTION APP */
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 body {
   margin: 0 auto;
   padding: 0 10px;
@@ -13,6 +18,10 @@ body {
   color: $zorba;
 }
 /* HEADER */
+#accountbar {
+    text-align: right;
+    padding-top: 1em;
+}
 header {
   h1 {
     font-size: 3em;
@@ -21,18 +30,25 @@ header {
       color: $zorba;
     }
   }
-}
-#accountbar {
-    text-align: right;
-    padding-top: 1em;
+  h2 {
+    margin-bottom:   0;
+    padding-top:    16px;
+    padding-bottom: 16px;
+    text-align:   center;
+    color:        $white;
+    background:   $zorba;
+  }
+  .alert {
+    padding:        1em;
+    text-align:  center;
+    background:   white;
+  }
 }
 nav {
   float: left;
   display: inline-block;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
   width: 130px;
-  margin-top: 64px;
+  margin-top: 0;
   margin-bottom: 4px;
   padding: 0.5em 1em;
   text-align: right;
@@ -52,21 +68,10 @@ nav {
 .container {
   margin-left: 150px;
   padding: 0 1em;
-  h2 {
-    margin-left:  -150px;
-    margin-right:  -10px;
-    margin-bottom:   0;
-    padding-top:    16px;
-    padding-bottom: 16px;
-    padding-left:  150px;
-    color: $white;
-    background: $zorba;
-  }
-  >:nth-child(2) {
+  >:first-child {
     margin-top: 14px;
   }
   #error_explanation,
-  #notice,
   .search_form {
     background:   white;
     padding:        1em;
@@ -166,7 +171,6 @@ a.bordered_link:hover {
 <% if Rails.env.development? %>
 .debug_dump {
   opacity: 0;
-  box-sizing: border-box;
   margin: 1em;
   padding: 1em;
   border: ridge 6px green;

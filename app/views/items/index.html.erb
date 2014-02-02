@@ -1,10 +1,8 @@
 <% if params[:category_id]
-    @page_title = "Search Results"
+    @page_title = "Items for Sale | Search Results"
   else
-    @page_title = "Home"
+    @page_title = "Items for Sale"
   end %>
-
-<h2>Want to buy something?</h2>
 
 <%= form_tag items_path, method: 'get', class: "search_form" do %>
   <p>

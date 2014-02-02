@@ -1,10 +1,6 @@
 <% @admin = true %>
 <% @page_title = @category.name %>
 
-<h2><%= @page_title %></h2>
-
-<%= content_tag(:p, notice, id: "notice") unless notice.nil? %>
-
 <table class="item_detail">
   <tbody>
     <tr class="field">

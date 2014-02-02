@@ -1,8 +1,5 @@
 <% @page_title = "#{@user.first_name} #{@user.last_name}" %>
 
-<h2><%= @page_title %></h2>
-
-<%= content_tag(:p, notice, id: "notice") unless notice.nil? %>
 <%= gravatar_for @user %>
 
 <h3><%= "#{@user.first_name} is selling:" %></h3>

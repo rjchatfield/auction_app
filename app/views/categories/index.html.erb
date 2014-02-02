@@ -1,8 +1,6 @@
 <% @admin = true %>
 <% @page_title = "All Categories" %>
 
-<h2><%= @page_title %></h2>
-
 <div id="item_list">
   <% @categories.each do |category| %>
     <%= render 'index_category', category: category %>

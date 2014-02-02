@@ -1,9 +1,5 @@
 <% @page_title = "Sign In" %>
 
-<h2><%= @page_title %></h2>
-
-<%= content_tag(:p, alert, id: "notice") unless alert.nil? %>
-
 <%= form_for(:session, url: sessions_path) do |f| %>
   <table class="item_detail">
     <tbody>

@@ -8,18 +8,9 @@
       <%= link_to "Sign Up", signup_path, class: "bordered_link" %>
     <% end %>
   </div>
-  <h1><%= link_to("#{"[ADMIN] " if @admin}Auction App", root_path) %></h1>
-  <nav>
-    <%= link_to "Buy", items_path, class: "bordered_link" %>
-    <%= link_to "Sell", new_item_path, class: "bordered_link" %>
-    <%= content_tag :div, nil, class: "separator" %>
-    <% if signed_in? && current_user.admin? %>
-      <%= content_tag :div, nil, class: "separator" %>
-      <%= link_to "Admin", controller: "categories"%>
-    <% end %>
-    <% if signed_in? %>
-      <%= content_tag :div, nil, class: "separator" %>
-      <%= link_to "Accounts", users_path %>
-    <% end %>
-  </nav>
+  <h1><%= link_to("Auction App", root_path) %></h1>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
+  <h2><%= @page_title %></h2>
 </header>
