@@ -90,7 +90,7 @@ class CategoriesController < ApplicationController
 
   # Admin Heading
   def isAdmin
-    if current_user.admin?
+    if signed_in? && current_user.admin?
       @admin = true
     else
       flash[:alert] = "You're not allowed to do that..."

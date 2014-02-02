@@ -14,7 +14,8 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
-    @bid = Bid.new
+    @bid  = Bid.new
+    @bids = Bid.where('item_id = ?', @item.id)
   end
 
   # GET /items/new
@@ -91,7 +92,7 @@ class ItemsController < ApplicationController
   end
 
   def correct_user
-    unless current_user?(@item.user) || current_user.admin?
+    unless signed_in? && (current_user?(@item.user) || current_user.admin?)
       redirect_to items_url, alert: "You can't do that!?."
     end
   end

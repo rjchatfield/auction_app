@@ -23,7 +23,7 @@
 
 <div class="container_nav">
   <%= link_to 'See All Items', items_path, class: "bordered_link" %>
-  <% if current_user?(@bid.user) || current_user.admin? %>
+  <% if signed_in? && (current_user?(@bid.user) || current_user.admin?) %>
     <%= link_to 'Delete', @bid, method: :delete, data: { confirm: "Are you sure you want to delete the bid for \"#{@bid.item.name}\"?" }, class: "bordered_link" %>
   <% end %>
 </div>
