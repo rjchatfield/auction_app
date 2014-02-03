@@ -5,11 +5,11 @@ class BidsController < ApplicationController
 
   def create
     @bid = Bid.new(bid_params)
-    if @bid.save
+    if @bid.amount >= min_bid_value_for(@bid.item) && @bid.save
       redirect_to @bid.item, notice: 'You are the highest bidder.'
     else
-      flash[:alert] = 'User deleted.'
-      render @bid.item
+      flash[:alert] = 'Invalid bid.'
+      redirect_to @bid.item
     end
   end
 
