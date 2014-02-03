@@ -20,8 +20,8 @@
         <td class="detail_input"><%= f.select :category_id, options_for_select(@categories, selected: @item.category_id), prompt: "Select Category" %></td>
       </tr>
       <tr class="field">
-        <td class="detail_label">Close Date</td>
-        <td class="detail_input"></td>
+        <td class="detail_label"><%= f.label :close_date, 'Close Date' %></td>
+        <td class="detail_input"><%= f.date_field :close_date, placeholder: "dd/mm/yyy", default: Time.now %></td>
       </tr>
       <tr class="actions">
         <td class="detail_label"></td>
