@@ -1,6 +1,10 @@
 module BidsHelper
   def min_bid_value_for(item)
-    (highest_bid_for(item.id) || item.starting_price) + stepper_value
+    if has_bid?(item)
+      highest_bid_for(item.id) + stepper_value
+    else
+      item.starting_price
+    end
   end
 
   def highest_bid_for(item_id)
@@ -8,7 +12,11 @@ module BidsHelper
     bids.maximum('amount') unless bids.nil?
   end
 
+  def has_bid?(item)
+    !highest_bid_for(item.id).nil?
+  end
+
   def stepper_value
-    0.01
+    1
   end
 end

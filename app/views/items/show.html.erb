@@ -20,8 +20,29 @@
     </tr>
     <tr class="field">
       <td class="detail_label">Created</td>
-      <td class="detail_value"><%= time_ago_in_words(@item.created_at) %></td>
+      <td class="detail_value"><%= "#{time_ago_in_words(@item.created_at)} ago" %></td>
     </tr>
+    <% if @item.closed? %>
+      <% if @item.won? %>
+        <tr class="field">
+          <td class="detail_label">Won by</td>
+          <td class="detail_value">
+            <%= link_to "#{@item.winner.first_name} #{@item.winner.last_name}", @item.winner %>
+            <%= "#{time_ago_in_words(@item.close_date)} ago" %>
+          </td>
+        </tr>
+      <% else %>
+        <tr class="field">
+          <td class="detail_label">Closed</td>
+          <td class="detail_value"><%= "#{time_ago_in_words(@item.close_date)} ago" %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr class="field">
+        <td class="detail_label">Closing</td>
+        <td class="detail_value"><%= "in #{time_ago_in_words(@item.close_date)}" %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 
@@ -37,7 +58,7 @@
 
 <% if signed_in? %>
   <%= render 'bids/index' unless @bids.count==0 %>
-  <%= render 'bids/form' unless current_user?(@item.user) %>
+  <%= render 'bids/form' unless (current_user?(@item.user) || @item.closed?) %>
 <% end %>
 
 <div class="container_nav">

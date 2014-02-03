@@ -19,6 +19,10 @@
         <td class="detail_label">Category</td>
         <td class="detail_input"><%= f.select :category_id, options_for_select(@categories, selected: @item.category_id), prompt: "Select Category" %></td>
       </tr>
+      <tr class="field">
+        <td class="detail_label">Close Date</td>
+        <td class="detail_input"></td>
+      </tr>
       <tr class="actions">
         <td class="detail_label"></td>
         <td class="detail_input"><%= f.submit "Save" %></td>

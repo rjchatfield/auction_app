@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140131085121) do
+ActiveRecord::Schema.define(version: 20140203025242) do
 
   create_table "bids", force: true do |t|
     t.decimal  "amount"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20140131085121) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.datetime "close_date"
   end
 
   create_table "users", force: true do |t|

@@ -3,11 +3,11 @@
 <%= gravatar_for @user %>
 
 <h3><%= "#{@user.first_name} is selling:" %></h3>
-<%= render 'items/index_items', items: @items_sell %>
+<%= render 'items/index_items', items: @items_sell, param_name: @items_sell_page %>
 <br>
 
 <h3><%= "#{@user.first_name} is bidding on:" %></h3>
-<%= render 'items/index_items', items: @items_bid %>
+<%= render 'items/index_items', items: @items_bid, param_name: @items_bid_page %>
 <br>
 
 <div class="container_nav">

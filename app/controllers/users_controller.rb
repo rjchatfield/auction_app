@@ -8,8 +8,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @items_sell = Item.paginate(page: params[:page], per_page: 5).where('User_id = ?', @user.id)
-    @items_bid  = Item.paginate(page: params[:page], per_page: 5)
+    @items_sell_page = :page_sell
+    @items_sell = Item.paginate(page: params[@items_sell_page], per_page: 5)
+                      .where('User_id = ?', @user.id)
+    @items_bid_page = :page_bid
+    @items_bid  = Item.paginate(page: params[@items_bid_page], per_page: 5)
                       .joins('JOIN bids ON bids.item_id = items.id')
                       .where(bids: { user_id: @user.id })
                       .group(:item_id)

@@ -7,17 +7,19 @@ namespace :db do
     puts 'db:populate Categories Created.'
 
     # Item
-    99.times do |n|
+    19.times do |n|
       name           = "#{Faker::Commerce.product_name} - #{n}"
       description    = "#{Faker::Company.catch_phrase}, with #{Faker::Company.catch_phrase}"
       user_id        = (n % 4) + 1
       category_id    = (n % 2) + 1
       starting_price = Faker::Number.number(3).to_f - 0.05
+      close_date     = Time.now + ((n % 7) - 3).days
       Item.create!(name: name,
                    description: description,
                    category_id: category_id,
                    user_id: user_id,
-                   starting_price: starting_price)
+                   starting_price: starting_price,
+                   close_date: close_date)
     end
     puts 'db:populate Items Created.'
 
@@ -46,6 +48,14 @@ namespace :db do
                    password_confirmation: passw)
     end
     puts 'db:populate Users Created.'
+
+    Bid.create!( amount: 30000.00,
+                item_id: 18,
+                user_id: 1)
+    Bid.create!( amount: 40000.00,
+                item_id: 17,
+                user_id: 2)
+    puts 'db:populate Bids Created.'
 
     puts 'db:populate Complete.'
   end

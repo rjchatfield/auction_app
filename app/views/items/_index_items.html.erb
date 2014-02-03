@@ -13,6 +13,6 @@
       </p>
     </div>
   <% end %>
-  <%= content_tag(:h3, "No items found", class: "no_items_message") if items.count==0 %>
-  <%= will_paginate items %>
+  <%= content_tag(:h3, "No items found", class: "no_items_message") if items.size == 0 %>
+  <%= will_paginate items, param_name: param_name %>
 </div>

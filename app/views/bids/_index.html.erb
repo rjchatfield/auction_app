@@ -1,16 +1,19 @@
 <h3>Bid History</h3>
-<div id="item_list">
-  <% @bids.each do |bid| %>
-    <div class="item_wrap">
-      <p>
-        <span class="item_cat">
-          <%= link_to "#{bid.user.first_name} #{bid.user.last_name}", bid.user %>
-          <%= "#{number_to_currency(bid.amount)} (#{time_ago_in_words(bid.created_at)} ago)" %>
-        </span>
-      </p>
-    </div>
-  <% end %>
-  <%= content_tag(:h3, "No bids found", class: "no_items_message") if @bids.count==0 %>
-  <%= will_paginate @bids %>
-</div>
+<% if @bids.count==0 %>
+  <%= content_tag(:h3, "No bids found", class: "no_items_message") %>
+<% else %>
+  <div id="item_list">
+    <table class="item_detail">
+      <tbody>
+        <% @bids.each do |bid| %>
+          <tr class="field">
+            <td class="detail_label"><%= link_to "#{bid.user.first_name} #{bid.user.last_name}", bid.user %></td>
+            <td class="detail_value"><%= "#{number_to_currency(bid.amount)} (#{time_ago_in_words(bid.created_at)} ago)" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @bids, param_name: @bids_page %>
+  </div>
+<% end %>
 <br>
