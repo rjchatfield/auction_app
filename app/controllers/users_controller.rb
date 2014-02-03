@@ -10,11 +10,25 @@ class UsersController < ApplicationController
   def show
     @items_sell_page = :page_sell
     @items_sell = Item.paginate(page: params[@items_sell_page], per_page: 5)
+                      .where('items.close_date >= ?', Time.now)
                       .where('User_id = ?', @user.id)
+    @items_sold_page = :page_sold
+    @items_sold = Item.paginate(page: params[@items_sold_page], per_page: 5)
+                      .joins('JOIN bids ON bids.item_id = items.id')
+                      .where('items.user_id = ?', @user.id)
+                      .where('items.close_date < ?', Time.now)
+                      .group(:item_id)
     @items_bid_page = :page_bid
     @items_bid  = Item.paginate(page: params[@items_bid_page], per_page: 5)
                       .joins('JOIN bids ON bids.item_id = items.id')
                       .where(bids: { user_id: @user.id })
+                      .where('items.close_date >= ?', Time.now)
+                      .group(:item_id)
+    @items_won_page = :page_won
+    @items_won  = Item.paginate(page: params[@items_won_page], per_page: 5)
+                      .joins('JOIN bids ON bids.item_id = items.id')
+                      .where(bids: { user_id: @user.id })
+                      .where('items.close_date < ?', Time.now)
                       .group(:item_id)
   end
 

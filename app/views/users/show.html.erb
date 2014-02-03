@@ -10,6 +10,14 @@
 <%= render 'items/index_items', items: @items_bid, param_name: @items_bid_page %>
 <br>
 
+<h3><%= "#{@user.first_name} has sold:" %></h3>
+<%= render 'items/index_items', items: @items_sold, param_name: @items_sold_page %>
+<br>
+
+<h3><%= "#{@user.first_name} has won:" %></h3>
+<%= render 'items/index_items', items: @items_won, param_name: @items_won_page %>
+<br>
+
 <div class="container_nav">
   <%= link_to 'See All Accounts', users_path, class: "bordered_link" %>
   <% if current_user.admin? || current_user?(@user) %>
