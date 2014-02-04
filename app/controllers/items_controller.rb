@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
   def edit
     if @item.closed?
       redirect_to @item, notice: 'You can\'t edit this now. Bidding has ended.'
-    if @item.has_bid?
+    elsif @item.has_bid?
       redirect_to @item, notice: 'You can\'t edit this now. Bidding has begun.'
     end
   end
