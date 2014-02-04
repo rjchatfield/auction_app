@@ -5,7 +5,7 @@ class Item < ActiveRecord::Base
   belongs_to :user
   has_many   :bids, dependent: :delete_all
 
-  validates :name,        presence: true, uniqueness: true, length: 3..50
+  validates :name,        presence: true, length: 3..50
   validates :starting_price, numericality: true
   validates :category_id, presence: true
   validates :user_id,     presence: true
