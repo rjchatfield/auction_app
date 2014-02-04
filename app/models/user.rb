@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   default_scope -> { order('users.last_name') }
 
-  has_many :items
+  has_many :items, dependent: :delete_all
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

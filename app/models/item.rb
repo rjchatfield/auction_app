@@ -3,6 +3,7 @@ class Item < ActiveRecord::Base
 
   belongs_to :category
   belongs_to :user
+  has_many   :bids, dependent: :delete_all
 
   validates :name,        presence: true, uniqueness: true, length: 3..50
   validates :starting_price, numericality: true
