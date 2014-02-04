@@ -1,4 +1,4 @@
-<%= form_for @item do |f| %>
+<%= form_for @item, :html => { :multipart => true } do |f| %>
   <%= render 'shared/error_messages', obj: f.object %>
   <table class="item_detail">
     <tbody>
@@ -22,6 +22,10 @@
       <tr class="field">
         <td class="detail_label"><%= f.label :close_date, 'Close Date' %></td>
         <td class="detail_input"><%= f.date_field :close_date, placeholder: "dd/mm/yyy", min: Time.now + 1.day %></td>
+      </tr>
+      <tr class="field">
+        <td class="detail_label"><%= f.label :avatar, 'Upload Image' %></td>
+        <td class="detail_input"><%= f.file_field :avatar, title: 'upload' %></td>
       </tr>
     </tbody>
   </table>

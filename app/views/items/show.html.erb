@@ -1,5 +1,10 @@
 <% @page_title = @item.name %>
 
+<% if @item.avatar.file? %>
+  <div class="item_avatar">
+    <%= image_tag @item.avatar.url(:medium) %>
+  </div>
+<% end %>
 <table class="item_detail">
   <tbody>
     <tr class="field">

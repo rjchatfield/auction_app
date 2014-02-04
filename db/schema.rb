@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140203025242) do
+ActiveRecord::Schema.define(version: 20140204123310) do
 
   create_table "bids", force: true do |t|
     t.decimal  "amount"
@@ -32,14 +32,18 @@ ActiveRecord::Schema.define(version: 20140203025242) do
   end
 
   create_table "items", force: true do |t|
-    t.string   "name",           limit: 50,                         null: false
+    t.string   "name",                limit: 50,                         null: false
     t.text     "description"
-    t.decimal  "starting_price",            precision: 9, scale: 2, null: false
-    t.integer  "category_id",                                       null: false
+    t.decimal  "starting_price",                 precision: 9, scale: 2, null: false
+    t.integer  "category_id",                                            null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
     t.datetime "close_date"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "users", force: true do |t|

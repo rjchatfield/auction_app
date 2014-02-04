@@ -11,6 +11,13 @@ class Item < ActiveRecord::Base
   validates :user_id,     presence: true
   validates :close_date,  presence: true
 
+  # Paperclip
+  has_attached_file :avatar,
+                    styles: { :medium => "300x300>", :thumb => "50x50>" },
+                    default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_size :avatar, less_than: 3.megabytes
+
   def self.search(query, category_id)
     if category_id && !category_id.empty?
       items = where('description || name like ? and category_id = ?', "%#{query}%", category_id)

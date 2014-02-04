@@ -1,7 +1,7 @@
 <div id="item_list">
   <% items.each do |item| %>
     <div class="item_wrap">
-      <div class="bullet"></div>
+      <div class="bullet"><%= image_tag item.avatar.url(:thumb) if item.avatar.file? %></div>
       <p>
         <span class="item_name">
           <%= link_to truncate(item.name, length: 50), item, title: "Show item details" %>
