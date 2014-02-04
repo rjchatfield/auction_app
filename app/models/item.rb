@@ -22,15 +22,19 @@ class Item < ActiveRecord::Base
     end
   end
 
+  def has_bid?
+    Bid.where('item_id = ?', self.id).count > 0
+  end
+
   def closed?
     !close_date.nil? && (Time.now >= close_date)
   end
 
   def won?
-    closed? && (Bid.where('item_id = ?', self.id).count > 0)
+    closed? && has_bid?
   end
 
   def winner
-    Bid.where('item_id = ?', self.id).first.user
+    won? && Bid.where('item_id = ?', self.id).first.user
   end
 end
