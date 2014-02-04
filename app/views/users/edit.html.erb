@@ -5,6 +5,10 @@
 <table class="item_detail">
   <tbody>
     <tr class="field">
+      <td class="detail_label"><a href="http://gravatar.com/emails" target=_blank title="Edit Gravatar"><%= gravatar_for @user %></a></td>
+      <td class="detail_input"><a href="http://gravatar.com/emails" class="bordered_link" target=_blank title="Edit Gravatar">Change</a></td>
+    </tr>
+    <tr class="field">
       <td class="detail_label"><%= f.label :first_name %></td>
       <td class="detail_input"><%= f.text_field :first_name %></td>
     </tr>
@@ -29,12 +33,8 @@
       <td class="detail_input"><%= f.submit "Save", title: "Save account details" %></td>
     </tr>
 <% end %>
-    <tr class="actions">
-      <td class="detail_label"><a href="http://gravatar.com/emails" target=_blank title="Edit Gravatar"><%= gravatar_for @user %></a></td>
-      <td class="detail_input"><a href="http://gravatar.com/emails" class="bordered_link" target=_blank title="Edit Gravatar">Change</a></td>
-    </tr>
   </tbody>
 </table>
 <div class="container_nav">
-  <%= link_to 'Cancel', @user, class: "bordered_link", title: "Return to account" %>
+  <%= link_to 'Cancel', @user, class: "bordered_link back_button", title: "Return to account" %>
 </div>
