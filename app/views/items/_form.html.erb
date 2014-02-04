@@ -23,10 +23,9 @@
         <td class="detail_label"><%= f.label :close_date, 'Close Date' %></td>
         <td class="detail_input"><%= f.date_field :close_date, placeholder: "dd/mm/yyy", default: Time.now, min: Time.now %></td>
       </tr>
-      <tr class="actions">
-        <td class="detail_label"></td>
-        <td class="detail_input"><%= f.submit "Save" %></td>
-      </tr>
     </tbody>
   </table>
+  <div class="container_nav">
+    <%= f.submit "Save", class: "bordered_link", title: "Save" %>
+  </div>
 <% end %>

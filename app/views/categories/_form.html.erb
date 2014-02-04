@@ -11,10 +11,9 @@
         <td class="detail_label"><%= f.label :description %></td>
         <td class="detail_input"><%= f.text_area :description %></td>
       </tr>
-      <tr class="actions">
-        <td class="detail_label"></td>
-        <td class="detail_input"><%= f.submit "Save", title: "Save" %></td>
-      </tr>
     </tbody>
   </table>
+  <div class="container_nav">
+    <%= f.submit "Save", class: "bordered_link", title: "Save" %>
+  </div>
 <% end %>
