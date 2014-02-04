@@ -25,8 +25,8 @@ class UsersController < ApplicationController
                       .where('items.close_date >= ?', Time.now)
                       .group(:item_id)
     @items_won_page = :page_won
-    @items_won = Item.paginate(page: params[@items_won_page], per_page: 5).that_user_bid_on(@user)
-    # @items_won = Item.paginate(page: params[@items_won_page], per_page: 5).that_user_won(@user)
+    # @items_won = Item.paginate(page: params[@items_won_page], per_page: 5).that_user_bid_on(@user)
+    @items_won = Item.that_user_won(@user).paginate(page: params[@items_won_page], per_page: 5)
   end
 
   def new
