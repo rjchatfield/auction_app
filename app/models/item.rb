@@ -27,7 +27,6 @@ class Item < ActiveRecord::Base
   end
 
   def won?
-    logger.debug Bid.where('item_id = ?', self.id)
     closed? && (Bid.where('item_id = ?', self.id).count > 0)
   end
 
