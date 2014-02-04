@@ -11,7 +11,11 @@
 </table>
 
 <div class="container_nav">
-  <%= link_to 'See All Categories', categories_path, class: "bordered_link" %>
-  <%= link_to 'Edit', edit_category_path(@category), class: "bordered_link" %>
-  <%= link_to 'Delete', @category, method: :delete, data: { confirm: "Are you sure you want to delete the category \"#{@category.name}\"?" }, class: "bordered_link" %>
+  <%= link_to 'See All Categories', categories_path, class: "bordered_link", title: "Return to categories" %>
+  <%= link_to 'Edit', edit_category_path(@category), class: "bordered_link", title: "Edit this category" %>
+  <%= link_to 'Delete', @category,
+                        method: :delete,
+                        data: { confirm: "Are you sure you want to delete the category \"#{@category.name}\"?" },
+                        class: "bordered_link",
+                        title: "Be Careful!" %>
 </div>

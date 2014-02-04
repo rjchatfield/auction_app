@@ -13,11 +13,11 @@
       </tr>
       <tr class="actions">
         <td class="detail_label"></td>
-        <td class="detail_input"><%= f.submit "Sign in", class: "bordered_link" %></td>
+        <td class="detail_input"><%= f.submit "Sign in", class: "bordered_link", title: "Sign in" %></td>
       </tr>
       <tr class="field">
         <td class="detail_label">New user?</td>
-        <td class="detail_input"><%= link_to "Sign up now!", signup_path %></td>
+        <td class="detail_input"><%= link_to "Sign up now!", signup_path, title: "Sign-up now" %></td>
       </tr>
     </tbody>
   </table>

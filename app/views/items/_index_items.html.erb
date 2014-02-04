@@ -4,12 +4,12 @@
       <div class="bullet"></div>
       <p>
         <span class="item_name">
-          <%= link_to truncate(item.name, length: 50), item %>
+          <%= link_to truncate(item.name, length: 50), item, title: "Show item details" %>
         </span>
         <br/>
         <span class="item_cat">
           <%= number_to_currency(highest_bid_for(item.id) || item.starting_price) %>
-          (<%= link_to item.category.name, items_path(category_id: item.category_id) %>)
+          (<%= link_to item.category.name, items_path(category_id: item.category_id), title: "Search for all #{item.category.name}" %>)
         </span>
       </p>
     </div>

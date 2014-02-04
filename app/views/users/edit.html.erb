@@ -26,15 +26,15 @@
     </tr>
     <tr class="actions">
       <td class="detail_label"></td>
-      <td class="detail_input"><%= f.submit "Save" %></td>
+      <td class="detail_input"><%= f.submit "Save", title: "Save account details" %></td>
     </tr>
 <% end %>
     <tr class="actions">
-      <td class="detail_label"><%= gravatar_for @user %></td>
-      <td class="detail_input"><a href="http://gravatar.com/emails" class="bordered_link" target=_blank>change</a></td>
+      <td class="detail_label"><a href="http://gravatar.com/emails" target=_blank title="Edit Gravatar"><%= gravatar_for @user %></a></td>
+      <td class="detail_input"><a href="http://gravatar.com/emails" class="bordered_link" target=_blank title="Edit Gravatar">Change</a></td>
     </tr>
   </tbody>
 </table>
 <div class="container_nav">
-  <%= link_to 'Cancel', @user, class: "bordered_link" %>
+  <%= link_to 'Cancel', @user, class: "bordered_link", title: "Return to account" %>
 </div>

@@ -8,7 +8,7 @@
     </tr>
     <tr class="field">
       <td class="detail_label">Seller</td>
-      <td class="detail_value"><%= link_to "#{@item.user.first_name} #{@item.user.last_name}", @item.user %></td>
+      <td class="detail_value"><%= link_to "#{@item.user.first_name} #{@item.user.last_name}", @item.user, title: "Show account profile" %></td>
     </tr>
     <tr class="field">
       <td class="detail_label">Price</td>
@@ -16,7 +16,7 @@
     </tr>
     <tr class="field">
       <td class="detail_label">Category</td>
-      <td class="detail_value"><%= link_to @item.category.name, items_path(category_id: @item.category_id) %></td>
+      <td class="detail_value"><%= link_to @item.category.name, items_path(category_id: @item.category_id), title: "Search for all #{@item.category.name}" %></td>
     </tr>
     <tr class="field">
       <td class="detail_label">Created</td>
@@ -48,11 +48,12 @@
 
 <% if signed_in? && (current_user?(@item.user) || current_user.admin?) && !@item.closed? %>
   <div class="container_nav">
-    <%= link_to 'Edit', edit_item_path(@item), class: "bordered_link"  unless @item.has_bid?%>
+    <%= link_to 'Edit', edit_item_path(@item), class: "bordered_link", title: "Edit this item" unless @item.has_bid?%>
     <%= link_to 'Delete', @item,
                           method: :delete,
                           data: { confirm: "Are you sure you want to delete the item \"#{@item.name}\"?" },
-                          class: "bordered_link" %>
+                          class: "bordered_link",
+                          title: "Delete this item" %>
   </div>
 <% end %>
 
@@ -62,8 +63,6 @@
 <% end %>
 
 <div class="container_nav">
-  <% unless signed_in? %>
-    <%= link_to "Sign in to Bid", signin_path, class: "bordered_link" %>
-  <% end %>
-  <%= link_to 'See All Items', items_path, class: "bordered_link" %>
+  <%= link_to "Sign in to Bid", signin_path, class: "bordered_link", title: "Sign in to bid" unless signed_in? %>
+  <%= link_to 'See All Items',  items_path,  class: "bordered_link", title: "Return to all items" %>
 </div>

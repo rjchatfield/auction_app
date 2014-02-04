@@ -2,8 +2,7 @@
   <div class="bullet"></div>
   <p>
     <span class="item_name">
-      <% logger.debug "user: #{user}" %>
-      <%= link_to (user.first_name + " " + user.last_name), user %>
+      <%= link_to (user.first_name + " " + user.last_name), user, title: "Show account profiles" %>
     </span>
   </p>
 </div>

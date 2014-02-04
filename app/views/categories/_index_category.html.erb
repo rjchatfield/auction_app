@@ -2,7 +2,7 @@
   <div class="bullet"></div>
   <p>
     <span class="item_name">
-      <%= link_to truncate(category.name, length: 50), edit_category_path(category) %>
+      <%= link_to truncate(category.name, length: 50), edit_category_path(category), title: "Search for all #{category.name}" %>
     </span>
     <br>
     <span class="item_cat">

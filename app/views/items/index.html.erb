@@ -8,8 +8,8 @@
   <p>
     <%= select_tag :category_id, options_for_select(@categories, selected: params[:category_id]), prompt: "Select Category" %>
     <%= text_field_tag :query, params[:query] %>
-    <%= submit_tag "Search", name: nil %>
-    <%= link_to "Clear", items_path, class: "bordered_link" %>
+    <%= submit_tag "Search", name: nil, title: "Search item names and descriptions" %>
+    <%= link_to "Clear", items_path, class: "bordered_link", title: "Clear search" if params[:category_id] %>
   </p>
 <% end %>
 
@@ -17,5 +17,5 @@
 <br>
 
 <div class="container_nav">
-  <%= link_to 'Something to Sell?', {action: 'new'}, class: "bordered_link" %>
+  <%= link_to 'Something to Sell?', {action: 'new'}, class: "bordered_link", title: "Something to sell?" %>
 </div>
