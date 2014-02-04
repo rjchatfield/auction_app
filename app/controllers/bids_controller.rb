@@ -6,7 +6,7 @@ class BidsController < ApplicationController
   def create
     @bid = Bid.new(bid_params)
     :correct_user
-    if !@bid.item.closed? && @bid.amount >= min_bid_value_for(@bid.item) && @bid.save
+    if valid? && @bid.save
       redirect_to @bid.item, notice: 'You are the highest bidder.'
     else
       flash[:alert] = 'Invalid bid.'
@@ -50,5 +50,9 @@ class BidsController < ApplicationController
     if current_user?(@bid.user) && !current_user.admin?
       redirect_to items_url, alert: "You can't do that!?."
     end
+  end
+
+  def valid?
+    !@bid.item.closed? && @bid.amount >= min_bid_value_for(@bid.item)
   end
 end
