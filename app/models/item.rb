@@ -38,4 +38,14 @@ class Item < ActiveRecord::Base
   def winner
     won? && Bid.where('item_id = ?', self.id).first.user
   end
+
+  def self.that_user_won(user)
+    result = []
+    self.that_user_bid_on(user).each { |item| result.push(item) if item.bids.first.user_id == user.id }
+    result
+  end
+
+  def self.that_user_bid_on(user)
+    joins('JOIN bids ON bids.item_id = items.id').where(bids: { user_id: user.id }).where('items.close_date < ?', Time.now).all
+  end
 end
