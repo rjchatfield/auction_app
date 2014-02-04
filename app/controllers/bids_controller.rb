@@ -5,7 +5,7 @@ class BidsController < ApplicationController
 
   def create
     @bid = Bid.new(bid_params)
-    if @bid.amount >= min_bid_value_for(@bid.item) && @bid.save
+    if !@bid.closed? && @bid.amount >= min_bid_value_for(@bid.item) && @bid.save
       redirect_to @bid.item, notice: 'You are the highest bidder.'
     else
       flash[:alert] = 'Invalid bid.'
