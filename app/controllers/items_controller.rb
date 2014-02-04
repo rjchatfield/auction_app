@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
-  before_action :signed_in_user,   only: [               :new, :edit, :create, :update, :destroy]
-  before_action :set_item,         only: [        :show,       :edit,          :update, :destroy]
-  before_action :categories_array, only: [:index,        :new, :edit, :create, :update]
-  before_action :correct_user,     only: [                     :edit,          :update, :destroy]
+  before_action :signed_in_user,    only: [               :new, :edit, :create, :update, :destroy]
+  before_action :set_item,          only: [        :show,       :edit,          :update, :destroy]
+  before_action :categories_array,  only: [:index,        :new, :edit, :create, :updated         ]
+  before_action :correct_user,      only: [                     :edit,          :updated         ]
+  before_action :correct_user_admin,only: [                                              :destroy]
 
   # GET /items
   # GET /items.json
@@ -105,6 +106,12 @@ class ItemsController < ApplicationController
   end
 
   def correct_user
+    unless signed_in? && current_user?(@item.user)
+      redirect_to items_url, alert: "You can't do that!?."
+    end
+  end
+
+  def correct_user_admin
     unless signed_in? && (current_user?(@item.user) || current_user.admin?)
       redirect_to items_url, alert: "You can't do that!?."
     end

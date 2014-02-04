@@ -1,11 +1,12 @@
 class BidsController < ApplicationController
-  before_action :signed_in_user,   only: [:create, :destroy]
-  before_action :set_bid,          only: [         :destroy]
-  before_action :correct_user,     only: [         :destroy]
+  before_action :signed_in_user,    only: [:create, :destroy]
+  before_action :set_bid,           only: [         :destroy]
+  before_action :correct_user_admin,only: [         :destroy]
 
   def create
     @bid = Bid.new(bid_params)
-    if !@bid.closed? && @bid.amount >= min_bid_value_for(@bid.item) && @bid.save
+    :correct_user
+    if !@bid.item.closed? && @bid.amount >= min_bid_value_for(@bid.item) && @bid.save
       redirect_to @bid.item, notice: 'You are the highest bidder.'
     else
       flash[:alert] = 'Invalid bid.'
@@ -14,11 +15,18 @@ class BidsController < ApplicationController
   end
 
   def destroy
-    @bid = Bid.find(params[:id])
     @bid.destroy
+    respond_to do |format|
+      format.html { redirect_to @bid.item }
+      format.json { head :no_content }
+    end
   end
 
   private
+
+  def set_bid
+    @bid = Bid.find(params[:id])
+  end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def bid_params
@@ -33,7 +41,13 @@ class BidsController < ApplicationController
   end
 
   def correct_user
-    unless current_user?(@item.user)
+    if current_user?(@bid.user)
+      redirect_to items_url, alert: "You can't do that!?."
+    end
+  end
+
+  def correct_user_admin
+    if current_user?(@bid.user) && !current_user.admin?
       redirect_to items_url, alert: "You can't do that!?."
     end
   end

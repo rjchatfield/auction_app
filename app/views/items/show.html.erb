@@ -46,9 +46,11 @@
   </tbody>
 </table>
 
-<% if signed_in? && (current_user?(@item.user) || current_user.admin?) && !@item.closed? %>
+<% if signed_in? && !@item.closed? && (current_user?(@item.user) || current_user.admin?)  %>
   <div class="container_nav">
-    <%= link_to 'Edit', edit_item_path(@item), class: "bordered_link", title: "Edit this item" unless @item.has_bid?%>
+    <% if current_user?(@item.user) && !@item.has_bid? %>
+      <%= link_to 'Edit', edit_item_path(@item), class: "bordered_link", title: "Edit this item" %>
+    <% end %>
     <%= link_to 'Delete', @item,
                           method: :delete,
                           data: { confirm: "Are you sure you want to delete the item \"#{@item.name}\"?" },

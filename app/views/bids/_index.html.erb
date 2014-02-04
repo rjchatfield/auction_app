@@ -8,7 +8,13 @@
         <% @bids.each do |bid| %>
           <tr class="field">
             <td class="detail_label"><%= link_to "#{bid.user.first_name} #{bid.user.last_name}", bid.user, title: "Show account profile" %></td>
-            <td class="detail_value"><%= "#{number_to_currency(bid.amount)} (#{time_ago_in_words(bid.created_at)} ago)" %></td>
+            <td class="detail_value">
+              <%= "#{number_to_currency(bid.amount)} (#{time_ago_in_words(bid.created_at)} ago) " %>
+              <%= link_to 'Delete', bid,
+                          method: :delete,
+                          data: { confirm: "Are you sure you want to delete the bid from \"#{bid.user.first_name}\"?" },
+                          title: "Delete this bid" if current_user.admin? %>
+            </td>
           </tr>
         <% end %>
       </tbody>
