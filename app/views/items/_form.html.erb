@@ -21,7 +21,7 @@
       </tr>
       <tr class="field">
         <td class="detail_label"><%= f.label :close_date, 'Close Date' %></td>
-        <td class="detail_input"><%= f.date_field :close_date, placeholder: "dd/mm/yyy", default: Time.now, min: Time.now %></td>
+        <td class="detail_input"><%= f.date_field :close_date, placeholder: "dd/mm/yyy", min: Time.now + 1.day %></td>
       </tr>
     </tbody>
   </table>

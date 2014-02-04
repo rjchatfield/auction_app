@@ -26,6 +26,7 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = Item.new
+    @item.close_date = Time.now + 1.day
   end
 
   # GET /items/1/edit
@@ -41,14 +42,18 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(item_params)
-
-    respond_to do |format|
-      if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @item }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
+    if @item.close_date <= Time.now
+      @item.errors.add(:close_date, 'must close after today')
+      render action: 'new'
+    else
+      respond_to do |format|
+        if @item.save
+          format.html { redirect_to @item, notice: 'Item was successfully created.' }
+          format.json { render action: 'show', status: :created, location: @item }
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @item.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
