@@ -8,7 +8,8 @@
         </span>
         <br/>
         <span class="item_cat">
-          <%= link_to item.category.name, items_path(category_id: item.category_id) %>
+          <%= number_to_currency(highest_bid_for(item.id) || item.starting_price) %>
+          (<%= link_to item.category.name, items_path(category_id: item.category_id) %>)
         </span>
       </p>
     </div>
