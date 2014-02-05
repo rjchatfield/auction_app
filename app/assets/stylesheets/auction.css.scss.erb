@@ -210,9 +210,36 @@ a.bordered_link:hover {
   nav {
     display: block;
     float: none;
-    width: default;
+    width: initial;
+    text-align: center;
   }
-  .container {
+  section {
     margin-left: 10px;
+    table.item_detail td {
+      display: block;
+      width: inherit;
+      &.detail_label {
+        text-align: left;
+        font-weight: bold;
+      }
+      &.detail_input {
+        width: inherit;
+        input {
+          width: 100%;
+        }
+      }
+    }
+    #item_list .item_wrap {
+      .bullet {
+        display: none;
+      }
+      p {
+        margin-left: 0;
+      }
+    }
+  }
+  a.bordered_link,
+  input.bordered_link {
+    padding: 6px 4px;
   }
 }
