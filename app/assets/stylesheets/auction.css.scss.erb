@@ -23,6 +23,7 @@ body {
     padding-top: 1em;
 }
 header {
+  position: relative;
   h1 {
     font-size: 3em;
     text-align: center;
@@ -39,9 +40,13 @@ header {
     background:   $zorba;
   }
   .alert {
+    position:  absolute;
+    top:           54px;
+    width:         100%;
     padding:        1em;
+    font-size:      2em;
     text-align:  center;
-    background:   white;
+    background:  yellow;
   }
 }
 nav {
@@ -77,6 +82,13 @@ section {
   }
   #error_explanation {
     margin-bottom: 1em;
+
+    &.no_errors {
+      display: none;
+    }
+  }
+  .invalid_input {
+    box-shadow: 0 0 4px red;
   }
   .item_avatar {
     text-align: center;

@@ -53,6 +53,6 @@ class BidsController < ApplicationController
   end
 
   def valid?
-    !@bid.item.closed? && @bid.amount >= min_bid_value_for(@bid.item)
+    !@bid.item.closed? && !@bid.amount.nil? && @bid.amount >= min_bid_value_for(@bid.item)
   end
 end
