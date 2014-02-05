@@ -2,39 +2,23 @@ namespace :db do
   desc 'Fill database with sample data'
   task populate: :environment do
     # Category
-    Category.create!(name: 'Books',  description: 'readable items')
-    Category.create!(name: 'Movies', description: 'watchable items')
-    puts 'db:populate Categories Created.'
-
-    # Item
-    19.times do |n|
-      name           = "#{Faker::Commerce.product_name} - #{n}"
-      description    = "#{Faker::Company.catch_phrase}, with #{Faker::Company.catch_phrase}"
-      user_id        = (n % 4) + 1
-      category_id    = (n % 2) + 1
-      starting_price = Faker::Number.number(3).to_f - 0.05
-      close_date     = Time.now + ((n % 7) - 3).days
-      Item.create!(name: name,
-                   description: description,
-                   category_id: category_id,
-                   user_id: user_id,
-                   starting_price: starting_price,
-                   close_date: close_date)
-    end
-    puts 'db:populate Items Created.'
+    Category.create!(name: 'Books',     description: 'Readable items')
+    Category.create!(name: 'Movies',    description: 'Watchable items')
+    Category.create!(name: 'Software',  description: 'Usable items')
+    puts 'db:populate Created Categories.'
 
     # Users
-    User.create!(first_name: 'Smiley',
-                  last_name: 'Rob',
+    User.create!(first_name: 'Robert',
+                  last_name: 'Chatfield',
                       email: 'robert.chatfield@griffithuni.edu.au',
-                   password: 'asdasd',
-                   password_confirmation: 'asdasd',
+                   password: 'password',
+                   password_confirmation: 'password',
                       admin: true)
     User.create!(first_name: 'Rodney',
                   last_name: 'Topor',
                       email: 'r.topor@gu.edu.au',
-                   password: 'asdasd',
-                   password_confirmation: 'asdasd')
+                   password: 'password',
+                   password_confirmation: 'password')
 
     2.times do |u|
       first = Faker::Name.first_name
@@ -47,15 +31,40 @@ namespace :db do
                    password: passw,
                    password_confirmation: passw)
     end
-    puts 'db:populate Users Created.'
+    puts 'db:populate Created Users.'
+
+    # Item
+    2.times do |u|
+      user_id = u + 1
+      4.times do |n|
+        name           = "#{Faker::Commerce.product_name}"
+        description    = "#{Faker::Company.catch_phrase}, with #{Faker::Company.catch_phrase}"
+        category_id    = (n % 3) + 1
+        starting_price = Faker::Number.number(2).to_f - 0.05
+        close_date     = Time.now + (n%2 * 13 - 3).days
+        Item.create!(name: name,
+                     description: description,
+                     category_id: category_id,
+                     user_id: user_id,
+                     starting_price: starting_price,
+                     close_date: close_date)
+      end
+    end
+    puts 'db:populate Created Items.'
 
     Bid.create!( amount: 30000.00,
-                item_id: 18,
-                user_id: 1)
+                item_id: 5,
+                user_id: 4)
     Bid.create!( amount: 40000.00,
-                item_id: 17,
-                user_id: 2)
-    puts 'db:populate Bids Created.'
+                item_id: 6,
+                user_id: 3)
+    Bid.create!( amount: 50000.00,
+                item_id: 3,
+                user_id: 4)
+    Bid.create!( amount: 60000.00,
+                item_id: 4,
+                user_id: 3)
+    puts 'db:populate Created Bids.'
 
     puts 'db:populate Complete.'
   end

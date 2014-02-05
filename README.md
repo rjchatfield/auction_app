@@ -1,5 +1,4 @@
 # AUCTION APP DOCUMENTATION
-===========================
 
 | DETAILS        | VALUE                               |
 |----------------|-------------------------------------|
@@ -7,8 +6,8 @@
 | STUDENT NUMBER | S2187099                            |
 | EMAIL          | robert.chatfield@griffithuni.edu.au |
 | COURSE         | 2503ICT                             |
+| DOCUMENTATION  | /public/documentation.txt           |
 
---------------
 
 # 2503ICT ASSIGNMENT 2
 
@@ -18,6 +17,37 @@
 
 
 ![Imgur](http://i.imgur.com/Qiv6l6Ll.png)
+
+## USAGE
+
+    $ git clone git@bitbucket.org:rjchatfield/auction-app-assignment-2.git
+    $ cd auction-app-assignment-2
+    $ bundle install
+    $ rake db:reset; rake db:populate
+    $ brew install imagemagick            # needed for Paperclip
+    $ rails s
+
+
+### HOME URL
+
+    http://localhost:3000/
+
+### LOGIN
+
+Name             | Access        |  Email                              | Password
+-----------------|---------------|-------------------------------------|---------
+Rodney Topor     | standard user | r.topor@gu.edu.au                   | password
+Robert Chatfield | admin user    | robert.chatfield@griffithuni.edu.au | password
+
+
+### USE CASES
+
+Route     | Open/Closed |  Bids
+----------|-------------|------------------
+`items/1` | Closed      | No bids
+`items/2` | Open        | No bids
+`items/3` | Closed      | Winning by User 4
+`items/4` | Open        | Leading by User 4
 
 
 ## MODELS
@@ -64,22 +94,6 @@
     add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
 
-## USAGE
-Describe how to use your application, in particular give relevant URLs.
-
-    $ git clone git@bitbucket.org:rjchatfield/auction-app.git
-    $ cd auction_app
-    $ bundle install
-    $ rake db:reset; rake db:populate
-    $ brew install imagemagick            # needed for Paperclip
-    $ rails s
-
-
-### HOME URL
-
-    http://localhost:3000/
-
-
 ## INTERESTING DESIGN
 
 * Header & Navigation hold a consistent position and shape on each page.
@@ -120,6 +134,7 @@ Describe how to use your application, in particular give relevant URLs.
 ## FEATURES THAT DO NOT WORK PROPERLY
 
 * Date validation was difficult. It has been implemented as best I could manage, but I feel it may violate MVC.
+* When updating a user account, a new password must be submitted.
 
 
 ## USABILITY TESTING
@@ -131,7 +146,7 @@ A non-technical friend of mine with good computer skills participated in usibili
 One noticible usibility feature I observed was that when Billy completed a form, his mouse hovered to the cancel button inncidently. He did this three times unconsciously. I have since moved the Cancel and "See All" buttons to a different location on the screen to avoid unintended clicks.
 
 
-## NOTES
+## ADDITIONAL NOTES
 
 This is an continuation of Assignment 1. This was not based on the sample solution provided.
 
