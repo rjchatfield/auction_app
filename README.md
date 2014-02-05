@@ -1,11 +1,148 @@
-# AUCTION APP #
+# AUCTION APP DOCUMENTATION
+===========================
 
-Welcome the the git repository for "Auction App" built by Robert j Chatfield (s2187099). This is a WIP project developed for 2503ICT Web Programming Summer Semester Intensive at Griffith University.
+| DETAILS        | VALUE                               |
+|----------------|-------------------------------------|
+| NAME           | ROBERT CHATFIELD                    |
+| STUDENT NUMBER | S2187099                            |
+| EMAIL          | robert.chatfield@griffithuni.edu.au |
+| COURSE         | 2503ICT                             |
 
-**COURSE**: 2503ICT
-**NAME**: ROBERT CHATFIELD
-**STUDENT NUMBER**: S2187099
-**DATE**: TUESDAY, 28TH JANUARY
+--------------
+
+# 2503ICT ASSIGNMENT 2
+
+| DATE                    |
+|-------------------------|
+| WEDNESDAY, 5th FEBRUARY |
+
+
+![Imgur](http://i.imgur.com/Qiv6l6Ll.png)
+
+
+## MODELS
+
+    create_table "bids", force: true do |t|
+      t.decimal  "amount"
+      t.integer  "item_id"
+      t.integer  "user_id"
+      t.datetime "created_at"
+      t.datetime "updated_at"
+    end
+    add_index "bids", ["item_id"], name: "index_bids_on_item_id"
+    add_index "bids", ["user_id"], name: "index_bids_on_user_id"
+    create_table "categories", force: true do |t|
+      t.string   "name",        limit: 50
+      t.datetime "created_at"
+      t.datetime "updated_at"
+      t.string   "description", limit: 140
+    end
+    create_table "items", force: true do |t|
+      t.string   "name",                limit: 50,                         null: false
+      t.text     "description"
+      t.decimal  "starting_price",                 precision: 9, scale: 2, null: false
+      t.integer  "category_id",                                            null: false
+      t.datetime "created_at"
+      t.datetime "updated_at"
+      t.integer  "user_id"
+      t.datetime "close_date"
+      t.string   "avatar_file_name"
+      t.string   "avatar_content_type"
+      t.integer  "avatar_file_size"
+      t.datetime "avatar_updated_at"
+    end
+    create_table "users", force: true do |t|
+      t.string   "first_name",      limit: 50, null: false
+      t.string   "last_name",       limit: 50, null: false
+      t.string   "email",                      null: false
+      t.string   "password_digest",            null: false
+      t.boolean  "admin"
+      t.datetime "created_at"
+      t.datetime "updated_at"
+      t.string   "remember_token"
+    end
+    add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+
+
+## USAGE
+Describe how to use your application, in particular give relevant URLs.
+
+    $ git clone git@bitbucket.org:rjchatfield/auction-app.git
+    $ cd auction_app
+    $ bundle install
+    $ rake db:reset; rake db:populate
+    $ brew install imagemagick            # needed for Paperclip
+    $ rails s
+
+
+### HOME URL
+
+    http://localhost:3000/
+
+
+## INTERESTING DESIGN
+
+* Header & Navigation hold a consistent position and shape on each page.
+* Notices animate in over the header, without jarring the user or interupting the flow of the html.
+* Anchor tags have no underline until hovered. While important anchor tags sport a border.
+* The page titles and the H1 tag contain the same content, prgramatically adjusting from page to page.
+* Cancel & "See All" buttons are floated to the left for increased usibility, based on usibility tests (see below). This also visually spaces the navigation-type buttons from the CRUD-type buttons (new, edit, delete).
+* When presenting search results, a clear button allows the user to reset the current search without having to navigate "home".
+* Basic colour scheme.
+* Tool tips added to clickable items for increased usibility.
+* When viewing on mobile:
+    * One column layout is used
+    * Navigation is centered
+    * Important anchor tags sport larger tap targets
+
+
+## INTERESTING IMPLEMENTATION
+
+* User account profiles includes:
+    * Gravatar
+    * Items being sold by this user
+    * Items being bid on by this user
+    * Items sold by this user
+    * Items won by this user
+* JavaScript is used for local validation on forms without requiring refresh or a post request to the server, using object oriented separation.
+* Use of HTML 5 elements such as Header, Nav, Footer & Section.
+* Image upload for items using Paperclip gem.
+* Pagination of multiple lists on a single page, using object oriented separation.
+* Strict adherence to Rails Style Guide using Rubocop package in Sublime Text.
+* High git activity.
+
+
+## FEATURES NOT IMPLEMENTEND
+
+* AJAX refresh of data was not implemented.
+
+
+## FEATURES THAT DO NOT WORK PROPERLY
+
+* Date validation was difficult. It has been implemented as best I could manage, but I feel it may violate MVC.
+
+
+## USABILITY TESTING
+
+### BILLY
+
+A non-technical friend of mine with good computer skills participated in usibility testing. I watched as he used the application unguided. I noticed one documented issue, as well as an additional four undocumented issues. I made note of these as he was using the application and ensured I fixed them with individual commits.
+
+One noticible usibility feature I observed was that when Billy completed a form, his mouse hovered to the cancel button inncidently. He did this three times unconsciously. I have since moved the Cancel and "See All" buttons to a different location on the screen to avoid unintended clicks.
+
+
+## NOTES
+
+This is an continuation of Assignment 1. This was not based on the sample solution provided.
+
+
+--------------
+
+# 2503ICT ASSIGNMENT 1
+
+| DATE                  |
+|-----------------------|
+| TUESDAY, 28TH JANUARY |
 
 
 ## SETUP
@@ -23,18 +160,21 @@ Welcome the the git repository for "Auction App" built by Robert j Chatfield (s2
     $ rake db:reset; rake db:populate
 
 This function will:
-+ Create the database (if there is none present)
-+ Purge any data (if there already was a db present)
-+ Populate it using a script in /auction_app/lib/tasks/sample_data.rake
+
+* create the database (if there is none present)
+* purge any data (if there already was a db present)
+* populate it using a script in /auction_app/lib/tasks/sample_data.rake
 
 
 ## USAGE
 
 Navigation Bar bar items are as follows.
 
-`Buy`:   Will take you to the items#index with the search feature
-`Sell`:  Will take you to the items#new
-`Admin`: Will take you to the categories#index. This is not protected with any authentication.
+**Buy**:   Will take you to the items#index with the search feature
+
+**Sell**:  Will take you to the items#new
+
+**Admin**: Will take you to the categories#index. This is not protected with any authentication.
 
 
 ## FEATURES NOT IMPLEMENTEND
@@ -44,11 +184,18 @@ All features were implemented as per the assignment specification provided Sunda
 
 ## ADDITIONAL FEATURES IMPLEMENTED
 
-* Categories filter can be triggered by clicking on the category in items#index or items#show.
-* Pagination of items#index
-* Fancy CSS hover of debug information while in Rails Development. Try hovering over the bottom of any HTML page to see the debug information. This 'reveal on hover' technique helped with UI development (without being too distracting).
-* Page Titles and H1's are programmatically appended with assignable instance variables. Additionally, "[ADMIN]" has been programmatically prepended to all Category views.
-* Restriction prohibits the Admin from destroying a Category that contains Items.
+ * Categories filter can be triggered by clicking on the category in items#index
+   or items#show.
+ * Pagination of items#index
+ * Fancy CSS hover of debug information while in Rails Development.
+   Try hovering over the bottom of any HTML page to see the debug information.
+   This 'reveal on hover' technique helped with UI development (without being
+   too distracting).
+ * Page Titles and H1's are programmatically appended with assignable instance
+   variables. Additionally, "[ADMIN]" has been programmatically prepended to all
+   Category views.
+ * Restriction prohibits the Admin from destroying a Category that contains
+   Items.
 
 
 ## USABILITY TESTING
@@ -57,15 +204,11 @@ Many hours of developer testing was completed during production of this applicat
 
 Additionally, my father also participated in an informal testing and feedback session. I briefed my father of the core features of the application, what it was aiming to do and what was outside of the scope of this assignment.
 
-> **Feedback**
-It was impressive overall, however he found it confusing to get back to the main page.
-**Changes**
-While there was always a link on every page (provided in the header), it was apparent that it wasn't the obvious way "home". To rectify this, I improved the colour scheme and styling in the main CSS file.
+**FEEDBACK**: It was impressive overall, however he found it confusing to get back to the main page.
 
+**CHANGES**:  While there was always a link on every page (provided in the header), it was apparent that it wasn't the obvious way "home". To rectify this, I improved the colour scheme and styling in the main CSS file.
 
-## ISSUES
-
-Any issues and bugs can be reported to s2187099@griffithuni.edu.au.
+--------------
 
 
 ## THANK YOU
